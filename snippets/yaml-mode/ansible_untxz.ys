@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: Ansible: install from txz
+# key: untxz
+# --
+- name: install $1 from txz
+  unarchive:
+    dest: "{{ $2 }}"
+    src: "files/{{ $3 }}.txz"
+    owner: "{{ $4 }}"
+    group: "{{ $4 }}"
+    mode: '0755'
+    copy: true
+
+

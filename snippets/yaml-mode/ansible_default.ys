@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Ansible: generate default file from template
+# key: default
+# --
+- name: generate /etc/default/$1
+  template:
+    dest: /etc/default/$1
+    src: etc/default/$1.j2
+  notify:
+    - restart $1
+
+

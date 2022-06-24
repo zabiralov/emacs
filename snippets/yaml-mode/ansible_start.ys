@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Ansible: start systemd service
+# key: start
+# --
+- name: start $1.service
+  systemd:
+    unit: $1.service
+    state: started
+    daemon_reload: true
+
+

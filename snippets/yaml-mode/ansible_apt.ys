@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: Ansible: apt package present
+# key: apt
+# --
+- name: install $1
+  apt:
+    pkg:
+      - $1
+    state: present
+    update_cache: true
+    install_recommends: false
+  when: install is defined and install == 'yes'
+
+

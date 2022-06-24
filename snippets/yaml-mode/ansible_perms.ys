@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Ansible: set permissions
+# key: perms
+# --
+- name: set permissions for $1
+  file:
+    dest: $2
+    owner: "{{ $3 }}"
+    group: "{{ $3 }}"
+    state: $4
+
+

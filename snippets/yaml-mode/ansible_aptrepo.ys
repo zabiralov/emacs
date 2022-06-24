@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Ansible: add apt repository
+# key: aptrepo
+# --
+- name: add $1 repository
+  apt_repository:
+    repo: "$2"
+    filename: $1
+    state: present
+    update_cache: true
+  when: install is defined and install == 'yes'
+
+

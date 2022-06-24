@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Ansible: ansible_managed
+# key: aman
+# --
+{{ ansible_managed }}
+
+

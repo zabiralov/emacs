@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Ansible: apt install needed packages
+# key: aptneed
+# --
+- name: install needed packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - $1
+    state: present
+    update_cache: true
+
+

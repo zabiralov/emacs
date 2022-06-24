@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Ansible: add ping task
+# key: ping
+# --
+- ping:
+
+

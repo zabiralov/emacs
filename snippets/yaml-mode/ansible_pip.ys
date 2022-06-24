@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Ansible: install pip packages
+# key: pip
+# --
+- name: install $1 via pip
+  pip:
+    name:
+      - $1
+    state: present
+
+

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Ansible: generate systemd service
+# key: service
+# --
+- name: generate /etc/systemd/system/$1.service
+  template:
+    dest: /etc/systemd/system/$1.service
+    src: etc/systemd/system/$1.service.j2
+  notify:
+    - daemon reload
+
+

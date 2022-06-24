@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Ansible: copy file to remote
+# key: copy
+# --
+- name: upload $1 file
+  copy:
+    src: $1
+    dest: "{{ $2 }}"
+    mode: '644'
+  notify:
+    - restart $3
+
+

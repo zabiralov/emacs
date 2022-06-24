@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Ansible: add user
+# key: user
+# --
+- name: create $1 system user
+  user:
+    name: $1
+    system: true
+    shell: /usr/sbin/nologin
+    home: /home/$1
+  when: install is defined and install == 'yes'
+
+

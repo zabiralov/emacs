@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: Ansible: install from url
+# key: geturl
+# --
+- name: install $1 from binary file
+  get_url:
+    url: "{{ $1_url }}"
+    url_username: "{{ pkg_user }}"
+    url_password: "{{ pkg_pass }}"
+    dest: '/usr/local/bin/$1'
+    owner: prometheus
+    group: prometheus
+    mode: '0755'
+    checksum: sha1:{{ $1_sha1 }}
+
+

@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: Prometheus rules
+# key: rules
+# --
+---
+
+\# {{ ansible_managed }}
+
+groups:
+- name: $1 
+  rules:
+
+{% raw %}
+
+
+{% endraw %}
