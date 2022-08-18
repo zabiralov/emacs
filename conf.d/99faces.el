@@ -1,6 +1,6 @@
-;;; zfaces.el --- Emacs faces settings
+;;; 99faces.el --- Emacs faces settings
 ;;;
-;;; Time-stamp: <2022-06-24 17:22:23 azabiralov>
+;;; Time-stamp: <2022-07-16 15:15:27 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -55,4 +55,4 @@
   )
 
 
-;;; yfaces.el ends here
+;;; 99faces.el ends here

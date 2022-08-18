@@ -13,7 +13,7 @@
 (use-package vterm
   :demand t
   :config
-  (setq vterm-shell "/usr/bin/fish"
+  (setq vterm-shell "/bin/bash"
         vterm-max-scrollback 100000
         vterm-kill-buffer-on-exit t
         vterm-always-compile-module t

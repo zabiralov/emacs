@@ -1,6 +1,6 @@
-;;; emacs.el --- modes for replacing Emacs main parts
+;;; 02emacs.el --- modes for replacing Emacs main parts
 ;;;
-;;; Time-stamp: <2022-06-24 19:19:33 azabiralov>
+;;; Time-stamp: <2022-07-16 15:14:50 azabiralov>
 ;;;
 ;;; Commentary:
 

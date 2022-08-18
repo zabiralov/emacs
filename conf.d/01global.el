@@ -1,6 +1,6 @@
-;;; global.el --- global Emacs configuration
+;;; 01global.el --- global Emacs configuration
 ;;;
-;;; Time-stamp: <2022-06-24 18:15:56 azabiralov>
+;;; Time-stamp: <2022-08-18 15:23:08 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -24,7 +24,8 @@
       initial-scratch-message nil
       use-file-dialog nil
       split-height-threshold nil
-      split-width-threshold nil)
+      split-width-threshold nil
+      default-justification 'full)
 
 
 (dolist
@@ -80,9 +81,7 @@
 
 ;; Global hooks
 ;;
-;;(add-hook 'minibuffer-setup-hook
-;;          '(lambda()
-;;             (highlight-symbol-mode -1)))
+(add-hook 'minibuffer-setup-hook '(lambda() (highlight-symbol-mode -1)))
 
 ;; Update timestamp with file saving
 (add-hook 'before-save-hook 'time-stamp)
@@ -95,7 +94,7 @@
   (goto-address-mode t)
   (rainbow-delimiters-mode t)
   (prettify-symbols-mode t)
-  (ws-butler-mode t)
+  (highlight-symbol-mode t)
   (hl-line-mode t))
 
 
@@ -118,4 +117,4 @@
   (reverse-im-mode t))
 
 
-;;; global.el ends here
+;;; 01global.el ends here

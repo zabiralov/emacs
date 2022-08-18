@@ -1,6 +1,6 @@
-;;; confmodes.el --- customizations for configurations modes
+;;; 11confmodes.el --- customizations for configurations modes
 ;;;
-;;; Time-stamp: <2022-06-08 18:25:09 azabiralov>
+;;; Time-stamp: <2022-08-18 14:18:19 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -18,9 +18,7 @@
   :mode "\\.cnf\\'"
   :mode "\\.cf\\'"
   :config
-  (add-to-list 'ac-modes 'conf-mode)
-  :hook
-  (conf-mode-hook . my-default-modes))
+  (add-to-list 'ac-modes 'conf-mode))
 
 
 
@@ -32,27 +30,7 @@
   :mode "\\.bind\\'"
   :mode "\\.zone\\'"
   :config
-  (setq dns-mode-soa-auto-increment-serial t)
-  :hook
-  (dns-mode-hook . my-default-modes))
+  (setq dns-mode-soa-auto-increment-serial t))
 
 
-
-;; apache-mode :: edit Apache HTTPD server configs
-;; https://github.com/emacs-php/apache-mode
-;; 
-(use-package apache-mode
-  :hook
-  (apache-mode-hook . my-default-modes))
-
-
-
-;; nginx-mode :: edit Nginx web server configs
-;; https://github.com/ajc/nginx-mode
-;; 
-(use-package nginx-mode
-  :hook
-  (nginx-mode-hook . my-default-modes))
-
-
-;;; confmodes.el ends here
+;;; 11confmodes.el ends here

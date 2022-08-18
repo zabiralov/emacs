@@ -1,6 +1,6 @@
-;;; macros.el --- List of saved keyboard macroses
+;;; 96macros.el --- List of saved keyboard macroses
 ;;;
-;;; Time-stamp: <2021-12-15 01:12:30 azabiralov>
+;;; Time-stamp: <2022-07-16 15:16:36 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -54,4 +54,4 @@
 (define-key my-macros-map (kbd "-") 'macro-insert-commented-line)
 
 
-;;; macros.el ends here
+;;; 96macros.el ends here

@@ -1,6 +1,6 @@
-;;; markupmodes.el --- customizations for markup modes
+;;; 12markupmodes.el --- customizations for markup modes
 ;;;
-;;; Time-stamp: <2022-05-22 15:26:35 azabiralov>
+;;; Time-stamp: <2022-08-14 16:40:38 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -10,16 +10,15 @@
 ;; Load auto-complete for access to ac-modes var:
 (require 'auto-complete)
 ;;
-;;
 
 
 ;; toml-mode :: edit TOML files
 ;; https://github.com/dryman/toml-mode.el
 ;; 
-(use-package toml-mode)
-(add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-mode))
-(add-hook 'toml-mode-hook 'my-default-modes)
-(add-to-list 'ac-modes 'toml-mode)
+(use-package toml-mode
+  :mode "\\.toml\\'"
+  :config
+  (add-to-list 'ac-modes 'toml-mode))
 
 
 ;; yaml-mode :: edit YAML files
@@ -31,7 +30,7 @@
   :config
   (add-to-list 'ac-modes 'yaml-mode)
   :hook
-  (yaml-mode-hook . my-default-modes))
+  (yaml-mode-hook . yas-minor-mode))
 
 
 ;; jinja2-mode :: edit Jinja2 templates
@@ -42,9 +41,7 @@
   :mode "\\.jinja\\'"
   :mode "\\.jinja2\\'"
   :config
-  (add-to-list 'ac-modes 'jinja2-mode)
-  :hook
-  (jinja2-mode-hook . my-default-modes))
+  (add-to-list 'ac-modes 'jinja2-mode))
 
 
 ;; terraform-node :: mode for edit terraform manifests
@@ -53,9 +50,7 @@
 (use-package terraform-mode
   :mode "\\.tf\\'"
   :config
-  (setq terraform-indent-level 2)
-  :hook
-  (terraform-mode-hook . my-default-modes))
+  (setq terraform-indent-level 2))
 
 
 ;; json-mode :: edit JSON files
@@ -64,27 +59,21 @@
 (use-package json-mode
   :mode "\\.json\\'"
   :config
-  (add-to-list 'ac-modes 'json-mode)
-  :hook
-  (json-mode-hook . my-default-modes))
+  (add-to-list 'ac-modes 'json-mode))
 
 
 ;; dockerfile-mode :: edit Dockerfiles
 ;; https://github.com/spotify/dockerfile-mode
 ;; 
 (use-package dockerfile-mode
-  :mode "Dockerfile\\'"
-  :hook
-  (dockerfile-mode-hook . my-default-modes))
+  :mode "Dockerfile\\'")
 
 
 ;; docker-compose-mode :: edit docker-compose manifests
 ;; https://github.com/meqif/docker-compose-mode
 ;; 
 (use-package docker-compose-mode
-  :mode "docker\\-compose\\.yml\\'"
-  :hook
-  (docker-compose-mode-hook . my-default-modes))
+  :mode "docker\\-compose\\.yml\\'")
 
 
-;;; markupmodes.el ends here
+;;; 12markupmodes.el ends here

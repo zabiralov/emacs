@@ -1,6 +1,6 @@
 ;;; flycheck.el --- configuration for FlyCheck
 ;;;
-;;; Time-stamp: <2022-06-24 18:12:36 azabiralov>
+;;; Time-stamp: <2022-07-16 14:18:53 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -19,8 +19,11 @@
   (global-flycheck-mode t))
 
 
-
+;; markdown support for flycheck via mmark
+;; https://github.com/mmark-md/flycheck-mmark
+;;
+(use-package flycheck-mmark)
 
 
 ;;
-;;; flycheck.el ends here
+;;; 23flycheck.el ends here

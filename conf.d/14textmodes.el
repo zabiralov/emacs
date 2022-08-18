@@ -1,6 +1,6 @@
-;;; textmodes.el --- customizations for text modes
+;;; 14textmodes.el --- customizations for text modes
 ;;;
-;;; Time-stamp: <2022-05-22 15:28:18 azabiralov>
+;;; Time-stamp: <2022-08-14 17:05:17 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -14,7 +14,22 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Text-Mode.html
 ;;
 (use-package text-mode
-  :mode "\\.t\\'")
+  :mode "\\.t\\'"
+  :hook
+  (text-mode-hook . aggressive-fill-paragraph-mode))
+
+
+;; markdown-mode :: edit md files with preview
+;; https://jblevins.org/projects/markdown-mode/
+;;
+(use-package markdown-mode
+  :mode "\\.md\\'"
+  :config
+  (setq markdown-list-indent-width t
+        markdown-enable-wiki-links t
+        markdown-coding-system "utf-8")
+  :hook
+  (markdown-mode-hook . aggressive-fill-paragraph-mode))
 
 
 ;; latex-mode :: edit LaTeX documents
@@ -23,10 +38,8 @@
 (use-package reftex
   :config
   (setq latex-run-command "pdflatex")
-
   :hook
-  (latex-mode-hook . turn-on-reftex)
-  (latex-mode-hook . my-default-modes))
+  (latex-mode-hook . turn-on-reftex))
 
 
-;;; textmodes.el ends here
+;;; 14textmodes.el ends here

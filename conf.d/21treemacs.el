@@ -1,6 +1,6 @@
-;;; treemacs.el --- settings for TreeMacs file browser
+;;; 21treemacs.el --- settings for TreeMacs file browser
 ;;;
-;;; Time-stamp: <2022-06-22 22:16:06 azabiralov>
+;;; Time-stamp: <2022-07-16 15:13:36 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -45,4 +45,4 @@
 	(treemacs-git-conflict-face ((t (:weight bold :font "Cantarell-11")))))
 
 
-;;; treemacs.el ends here
+;;; 21treemacs.el ends here

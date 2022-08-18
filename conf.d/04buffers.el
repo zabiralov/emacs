@@ -1,6 +1,6 @@
-;;; buffers.el --- customization for Emacs buffers
+;;; 04buffers.el --- customization for Emacs buffers
 ;;;
-;;; Time-stamp: <2022-06-25 00:20:21 azabiralov>
+;;; Time-stamp: <2022-07-16 15:14:25 azabiralov>
 ;;;
 ;;; Commentary:
 

@@ -1,6 +1,6 @@
-;;; progmodes.el --- customization for progmodes
+;;; 13progmodes.el --- customization for progmodes
 ;;;
-;;; Time-stamp: <2022-05-22 15:27:55 azabiralov>
+;;; Time-stamp: <2022-08-18 14:17:42 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -14,12 +14,10 @@
 ;; fish-mode :: edit Fish shell scripts
 ;; https://github.com/wwwjfy/emacs-fish
 ;;
-(use-package fish-mode
-	:config
-	(setq fish-indent-offset 4)
-  (add-to-list 'ac-modes 'fish-mode)
-	:hook
-	(python-mode-hook . my-default-modes))
+;; (use-package fish-mode
+;; 	:config
+;; 	(setq fish-indent-offset 4)
+;;   (add-to-list 'ac-modes 'fish-mode))
 
 
 ;; python-mode :: edit Python sources
@@ -30,10 +28,7 @@
   (setq python-indent-offset 2
         python-shell-interpreter "ipython3"
         python-shell-prompt-regexp "python3> ")
-  (add-to-list 'ac-modes 'python-mode)
-
-  :hook
-  (python-mode-hook . my-default-modes))
+  (add-to-list 'ac-modes 'python-mode))
 
 
 ;; make-mode :: edit Makefiles
@@ -44,10 +39,7 @@
   (setq makefile-tab-after-target-colon t
         makefile-browser-selected-mark "+   "
         makefile-browser-unselected-mark "   ")
-  (add-to-list 'ac-modes 'make-mode)
-
-  :hook
-  (make-mode-hook . my-default-modes))
+  (add-to-list 'ac-modes 'make-mode))
 
 
 ;; sql-mode :: edit SQL sources
@@ -58,7 +50,6 @@
   :config
   (add-to-list 'ac-modes 'sql-mode)
   :hook
-  (sql-mode-hook . my-default-modes)
   (sql-mode-hook . sqlup-mode))
 
 
@@ -68,42 +59,33 @@
 (use-package lisp-mode
   :mode "\\.lisp\\'"
   :config
-  (add-to-list 'ac-modes 'lisp-mode)
-  :hook
-  (lisp-mode-hook . my-default-modes))
+  (add-to-list 'ac-modes 'lisp-mode))
 
 
 ;; emacs-lisp-mode :: edit this sources
 ;; https://www.emacswiki.org/emacs/EmacsLispMode
 ;;
-(use-package emacs-lisp-mode
-  :config
-  (add-to-list 'ac-modes 'emacs-lisp-mode)
-  :hook
-	(emacs-lisp-mode-hook . my-default-modes))
+;; (use-package emacs-lisp-mode
+;;   :config
+;;   (add-to-list 'ac-modes 'emacs-lisp-mode))
 
 
 ;; lua-mode :: edit Lua sources
 ;; http://immerrr.github.io/lua-mode/
 ;;
-(use-package lua-mode
-  :config
-  (add-to-list 'ac-modes 'lua-mode)
-  :hook
-  (lua-mode-hook . my-default-modes))
+;; (use-package lua-mode
+;;   :config
+;;   (add-to-list 'ac-modes 'lua-mode))
 
 
 ;; go-mode :: edit Golang sources
 ;; https://github.com/dominikh/go-mode.el
 ;;
-(use-package go-mode
-  :config
-  (setq flycheck-go-vet-executable "go vet"
-        flycheck-go-build-executable "go build")
-  (add-to-list 'ac-modes 'go-mode)
-
-  :hook
-  (go-mode-hook . my-default-modes))
+;; (use-package go-mode
+;;   :config
+;;   (setq flycheck-go-vet-executable "go vet"
+;;         flycheck-go-build-executable "go build")
+;;   (add-to-list 'ac-modes 'go-mode))
 
 
 ;; sh-mode :: edit sh/bash shell scripts
@@ -111,9 +93,7 @@
 ;;
 (use-package shell
   :config
-  (add-to-list 'ac-modes 'sh-mode)
-  :hook
-  (sh-mode-hook . my-default-modes))
+  (add-to-list 'ac-modes 'sh-mode))
 
 
 ;; cperl-mode :: advanced mode for edit Perl5 sources
@@ -126,20 +106,15 @@
         cperl-auto-newline t
         cperl-electric-parens nil
         cperl-electric-lbrace-space nil)
-  (add-to-list 'ac-modes 'perl-mode)
-
-  :hook
-  (perl-mode-hook . my-default-modes))
+  (add-to-list 'ac-modes 'perl-mode))
 
 
 ;; vala-mode :: edit Vala sources
 ;; https://github.com/emacsorphanage/vala-mode
 ;;
-(use-package vala-mode
-  :config
-  (add-to-list 'ac-modes 'vala-mode)
-  :hook
-  (vala-mode-hook . my-default-modes))
+;; (use-package vala-mode
+;;   :config
+;;   (add-to-list 'ac-modes 'vala-mode))
 
 
 ;; cc-mode :: edit souces for c-style languages
@@ -152,26 +127,21 @@
         c-report-syntactic-errors t
         flycheck-gcc-language-standard "c11")
   (add-to-list 'ac-modes 'c-mode)
-  (add-to-list 'flycheck-gcc-include-path "~/Code/c/include/")
-
-  :hook
-  (c-mode-hook . my-default-modes))
+  (add-to-list 'flycheck-gcc-include-path "~/Code/c/include/"))
 
 
 ;; sed-mode :: edit sed scripts
 ;; https://elpa.gnu.org/packages/sed-mode.html
 ;;
 (use-package sed-mode
-  :hook
-  (sed-mode-hook . my-default-modes))
+  :mode "\\.sed\\'")
 
 
 ;; cql-mode :: edit Cassandra CQL sources
 ;; https://github.com/Yuki-Inoue/cql-mode
 ;;
 (use-package cql-mode
-  :hook
-  (cql-mode-hook . my-default-modes))
+  :mode "\\.cql\\'")
 
 
-;;; progmodes.el ends here
+;;; 13progmodes.el ends here

@@ -1,6 +1,6 @@
-;;; keys.el --- global Emacs keybindings rewrite
+;;; 98keys.el --- global Emacs keybindings rewrite
 ;;;
-;;; Time-stamp: <2022-06-24 13:41:51 azabiralov>
+;;; Time-stamp: <2022-07-16 15:15:42 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -58,4 +58,4 @@
 
 
 ;;
-;;; keys.el ends here
+;;; 98keys.el ends here

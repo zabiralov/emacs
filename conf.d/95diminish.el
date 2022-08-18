@@ -1,6 +1,6 @@
-;;; diminish.el --- diminish for modes, which not dimished by use-package
+;;; 95diminish.el --- diminish for modes, which not dimished by use-package
 ;;;
-;;; Time-stamp: <2022-06-25 00:14:51 azabiralov>
+;;; Time-stamp: <2022-07-16 15:16:45 azabiralov>
 ;;;
 ;;; Commentary:
 

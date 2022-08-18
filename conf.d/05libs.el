@@ -1,6 +1,6 @@
-;;; libs.el --- various Emacs libs
+;;; 05libs.el --- various Emacs libs
 ;;;
-;;; Time-stamp: <2022-06-24 23:59:11 azabiralov>
+;;; Time-stamp: <2022-07-16 15:14:15 azabiralov>
 ;;;
 ;;; Commentary:
 

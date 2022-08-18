@@ -1,6 +1,6 @@
-;;; editing.el --- customization for Emacs edit expirience
+;;; 03editing.el --- customization for Emacs edit expirience
 ;;;
-;;; Time-stamp: <2022-06-24 18:17:03 azabiralov>
+;;; Time-stamp: <2022-08-18 16:37:50 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -59,7 +59,6 @@
 (use-package aggressive-indent
   :diminish
   :config
-
   (setq aggressive-indent-comments-too t
         aggressive-indent-sit-for-time 0.01)
 
@@ -117,8 +116,7 @@
   ("S-<SPC>" . grugru))
 
 
-
-;; ws-butter :: trim spaces from end of line
+;; ws-butler :: trim spaces from end of line
 ;; https://github.com/lewang/ws-butler
 ;; 
 (use-package ws-butler
@@ -126,7 +124,9 @@
   :config
   (setq ws-butler-keep-whitespace-before-point t
         ws-butler-convert-leading-tabs-or-spaces t
-        ws-butler-global-exempt-modes '(makefile-mode)))
+        ws-butler-global-exempt-modes '(makefile-mode))
+  :hook ((prog-mode . ws-butler-mode)
+         (yaml-mode . ws-butler-mode)))
 
 
 ;; show-paren-mode :: show paren characters
@@ -138,6 +138,20 @@
   (setq show-paren-style 'parenthehis
         show-paren-delay 0)
   (show-paren-mode t))
+
+
+;; highlight-symbol :: highlight current symbol under cursor
+;; http://nschum.de/src/emacs/highlight-symbol/
+;;
+(use-package highlight-symbol
+  :diminish
+  :config
+  (setq highlight-symbol-idle-delay 0
+        highlight-symbol-highlight-single-occurrence nil
+        highlight-symbol-colors '("HotPink1"))
+  :bind
+  ("M-h" . highlight-symbol-next)
+  ("C-M-h" . highlight-symbol-prev))
 
 
 ;; autocomplete-mode :: automatic completion
@@ -166,4 +180,4 @@
 
 
 ;;
-;;; editing.el ends here
+;;; 03editing.el ends here

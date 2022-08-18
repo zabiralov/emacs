@@ -4,7 +4,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(magit grugru rainbow-delimiters multi-vterm column-enforce-mode indent-guide ws-butler aggressive-indent deadgrep diminish flycheck flycheck-clang-analyzer flycheck-golangci-lint flycheck-guile flycheck-yamllint gist jq-format json-mode markdown-mode treemacs treemacs-magit treemacs-tab-bar vterm vterm-toggle yaml-mode yascroll yasnippet reverse-im super-save use-package solarized-theme)))
+   '(highlight-symbol aggressive-fill-paragraph flycheck-mmark magit grugru rainbow-delimiters multi-vterm column-enforce-mode indent-guide ws-butler aggressive-indent deadgrep diminish flycheck flycheck-clang-analyzer flycheck-golangci-lint flycheck-guile flycheck-yamllint gist jq-format json-mode markdown-mode treemacs treemacs-magit treemacs-tab-bar vterm vterm-toggle yaml-mode yascroll yasnippet reverse-im super-save use-package solarized-theme))
+ '(warning-suppress-log-types '((comp) (comp)))
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

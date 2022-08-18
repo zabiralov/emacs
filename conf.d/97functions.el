@@ -1,25 +1,10 @@
-;;; functions.el --- custom ELisp functions
+;;; 97functions.el --- custom ELisp functions
 ;;;
-;;; Time-stamp: <2022-06-24 13:53:01 azabiralov>
+;;; Time-stamp: <2022-08-14 13:19:08 azabiralov>
 ;;;
 ;;; Commentary:
 
 ;;; Code:
-
-
-;; default modes enable via add-hook
-
-;; (defun my-default-modes ()
-;;   "List of buffer-local modes enabled by default."
-;; 	(interactive)
-;;   (abbrev-mode t)
-;;   (auto-insert-mode t)
-;;   (highlight-symbol-mode t)
-;;   (hs-minor-mode t)
-;;   (goto-address-mode t)
-;;   (rainbow-delimiters-mode t)
-;;   (prettify-symbols-mode t) 
-;;   (ws-butler-mode t))
 
 
 ;; custom-functions
@@ -169,4 +154,4 @@ With prefix ARG delete across newlines as well."
   (treemacs-RET-action))
 
 ;;; 
-;;; functions.el ends here
+;;; 97functions.el ends here
