@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Ansible: enable systemd service
+# key: enable
+# --
+- name: enable $1.service
+  systemd:
+    unit: $1.service
+    enabled: true
+    daemon_reload: true
+
+

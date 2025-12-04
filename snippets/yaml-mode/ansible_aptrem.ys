@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Ansible: apt package absent
+# key: aptrem
+# --
+- name: ensure package $1 was removed
+  apt:
+    pkg:
+      - $1
+    state: absent
+    update_cache: true
+    install_recommends: false
+
+

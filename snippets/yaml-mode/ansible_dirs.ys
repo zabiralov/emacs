@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Anaible: create directories
+# key: dirs
+# --
+- name: create needed directories
+  file:
+    dest: "{{ item }}"
+    state: directory
+  loop:
+    - $1
+    - $2

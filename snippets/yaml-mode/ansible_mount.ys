@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Ansible: mount filesystem
+# key: mount
+# --
+- name: mount filesystem to $1
+  mount:
+    path: $1
+    src: LABEL=$2
+    fstype: $3
+    opts: noatime
+    state: mounted
+
+

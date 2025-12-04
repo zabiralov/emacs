@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Ansible: import tasks
+# key: import
+# --
+- import_tasks: $1.yml
+  when: $1 is defined and $1 == 'yes'

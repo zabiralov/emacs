@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Ansible: dnf package present
+# key: dnf
+# --
+- name: install $1
+  dnf:
+    pkg:
+      - $1
+    state: present
+  when: install is defined and install == 'yes'

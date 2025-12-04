@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Ansible: create directory
+# key: dir
+# --
+- name: create $1 directory
+  file:
+    dest: $1
+    state: directory
+
+

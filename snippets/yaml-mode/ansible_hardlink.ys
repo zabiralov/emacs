@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Ansible: add hard link
+# key: hardlink
+# --
+- name: create hardlink to $1
+  file:
+    dest: $1
+    src: $1
+    mode: hard
+
+

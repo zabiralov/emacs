@@ -1,0 +1,42 @@
+# -*- mode: snippet -*-
+# name: Ansible: generate handlers
+# key: handlers
+# --
+- name: restart $1
+  systemd:
+    unit: $1.service
+    daemon_reload: true
+    state: restarted
+  notify:
+    - wait $1 start
+    - get $1 status
+    - show $1 status
+
+
+- name: reload $1
+  systemd:
+    unit: $1.service
+    daemon_reload: true
+    state: reloaded
+  
+
+- name: daemon reload
+  systemd:
+    daemon_reload: true
+
+
+- name: wait $1 start
+  pause:
+    seconds: $2
+
+
+- name: get $1 status
+  command: "systemctl status $1.service"
+  register: $1_status
+
+
+- name: show $1 status
+  debug:
+    var: $1_status.stdout_lines
+
+

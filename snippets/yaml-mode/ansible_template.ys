@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Ansible: generate file from template
+# key: template
+# --
+- name: generate /etc/$1
+  template:
+    dest: /etc/$1
+    src: etc/$1.j2
+  notify:
+    - reload $2
+
+

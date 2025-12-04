@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Ansible: generate files in loop
+# key: loopgen
+# --
+- name: generate files in $1
+  template:
+    dest: "/home/{{ item.$2 }}.conf"
+    src: $3.j2
+  loop: "{{ $4 }}"
+
+

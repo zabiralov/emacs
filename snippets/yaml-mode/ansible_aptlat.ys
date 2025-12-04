@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Ansible: apt package latest
+# key: aptlat
+# --
+- name: install latest version of $1
+  apt:
+    pkg:
+      - $1
+    state: latest
+    update_cache: true
+    install_recommends: false
+
+

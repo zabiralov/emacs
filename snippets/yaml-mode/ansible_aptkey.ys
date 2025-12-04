@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Ansible: add apt key
+# key: aptkey
+# --
+- name: add $1 repository gpg key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: $2
+    state: present
+  when: install is defined and install == 'yes'
+
+

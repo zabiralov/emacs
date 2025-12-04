@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Ansible: add symbolic link
+# key: symlink
+# --
+- name: create symlink to $1
+  file:
+    dest: $1
+    src: $1
+    mode: link
+
+
