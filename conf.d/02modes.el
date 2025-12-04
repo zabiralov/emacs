@@ -1,6 +1,6 @@
 ;;; 02modes.el
 ;;;
-;;; Time-stamp: <2025-12-04 10:28:32 azabiralov>
+;;; Time-stamp: <2025-12-04 10:42:10 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -27,7 +27,6 @@
         mc/match-cursor-style nil))
 
 (use-package epa-file
-  :ensure t
   :config
   (setq epa-file-select-keys "none"
         epa-file-cache-passphrase-for-symmetric-encryption t
@@ -184,7 +183,6 @@
   (super-save-mode t))
 
 (use-package uniquify
-  :ensure t
   :demand t
   :config
   (setq uniquify-buffer-name-style 'forward

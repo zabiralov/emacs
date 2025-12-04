@@ -1,6 +1,6 @@
 ;;; 99faces.el --- Emacs faces settings
 ;;;
-;;; Time-stamp: <2025-07-28 14:56:17 azabiralov>
+;;; Time-stamp: <2025-12-04 11:00:58 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -47,6 +47,8 @@
 
 (my-set-faces)
 
+(use-package doom-themes
+  :ensure t)
 
 ;; https://github.com/LionyxML/auto-dark-emacs
 
