@@ -1,29 +1,33 @@
 ;;; 02modes.el
 ;;;
-;;; Time-stamp: <2025-05-25 13:35:09 azabiralov>
+;;; Time-stamp: <2025-12-04 10:28:32 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
 ;;; Code:
 
 (use-package dedicated
+  :ensure t
   :bind (("H-`" . dedicated-mode)
 	 ("C-x d" . dedicated-mode)
 	 ("<f10>" . dedicated-mode)))
 
 (use-package move-dup
-:demand t
-:bind (("M-p"   . move-dup-move-lines-up)
-       ("C-M-p" . move-dup-duplicate-up)
-       ("M-n"   . move-dup-move-lines-down)
-       ("C-M-n" . move-dup-duplicate-down)))
+  :ensure t
+  :demand t
+  :bind (("M-p"   . move-dup-move-lines-up)
+	 ("C-M-p" . move-dup-duplicate-up)
+	 ("M-n"   . move-dup-move-lines-down)
+	 ("C-M-n" . move-dup-duplicate-down)))
 
 (use-package multiple-cursors
+  :ensure t
   :config
   (setq mc/insert-numbers-default 1
         mc/match-cursor-style nil))
 
 (use-package epa-file
+  :ensure t
   :config
   (setq epa-file-select-keys "none"
         epa-file-cache-passphrase-for-symmetric-encryption t
@@ -31,12 +35,14 @@
         epa-popup-info-window nil))
 
 (use-package aggressive-indent
+  :ensure t
   :diminish "A-IND"
   :config
   (setq aggressive-indent-comments-too t
 	aggressive-indent-sit-for-time 0.01))
 
 (use-package smartparens
+  :ensure t
   :diminish
   :config
   (setq sp-show-pair-delay 0.1
@@ -47,6 +53,7 @@
   (smartparens-global-mode t))
 
 (use-package git-gutter
+  :ensure t
   :diminish
   :config
   (setq git-gutter:update-interval 1
@@ -56,6 +63,7 @@
   (global-git-gutter-mode t))
 
 (use-package grugru
+  :ensure t
   :config
   (grugru-define-global 'symbol '("yes" "no"))
   (grugru-define-global 'symbol '("Yes" "No"))
@@ -73,6 +81,7 @@
   ("H-<SPC>" . grugru))
 
 (use-package ws-butler
+  :ensure t
   :diminish
   :config
   (setq ws-butler-keep-whitespace-before-point t
@@ -82,6 +91,7 @@
          (yaml-mode . ws-butler-mode)))
 
 (use-package paren
+  :ensure t
   :diminish
   :config
   (setq show-paren-style 'parenthehis
@@ -89,6 +99,7 @@
   (show-paren-mode t))
 
 (use-package highlight-symbol
+  :ensure t
   :diminish
   :config
   (setq highlight-symbol-idle-delay 0
@@ -99,6 +110,7 @@
   ("C-M-h" . highlight-symbol-prev))
 
 (use-package company
+  :ensure t
   :diminish
   :config
   (setq company-backends
@@ -121,6 +133,7 @@
   (global-company-mode t))
 
 (use-package column-enforce-mode
+  :ensure t
   :diminish
   :config
   (setq column-enforce-column 80
@@ -128,6 +141,7 @@
   (column-enforce-mode t))
 
 (use-package indent-guide
+  :ensure t
   :diminish
   :demand t
   :config
@@ -139,6 +153,7 @@
   (indent-guide-global-mode))
 
 (use-package autorevert
+  :ensure t
   :diminish
   :config
   (setq auto-revert-interval 10
@@ -146,17 +161,20 @@
 	auto-revert-mode t))
 
 (use-package eldoc
+  :ensure t
   :config
   (setq eldoc-idle-delay 0.6
 	eldoc-print-after-edit nil
 	eldoc-minor-mode-string nil))
 
 (use-package savehist
+  :ensure t
   :config
   (setq savehist-file "~/.emacs.d/var/savehist/minibuffer")
   (savehist-mode t))
 
 (use-package super-save
+  :ensure t
   :demand t
   :diminish
   :config
@@ -166,6 +184,7 @@
   (super-save-mode t))
 
 (use-package uniquify
+  :ensure t
   :demand t
   :config
   (setq uniquify-buffer-name-style 'forward
@@ -175,25 +194,29 @@
 	uniquify-ignore-buffers-re "^\\*"))
 
 (use-package transient
+  :ensure t
   :config
   (setq transient-levels-file (expand-file-name "var/treemacs/transient/levels.el" user-emacs-directory)
 	transient-values-file (expand-file-name "var/treemacs/transient/values.el" user-emacs-directory)
 	transient-history-file (expand-file-name "var/treemacs/transient/history.el" user-emacs-directory)))
 
-  (use-package flycheck
-    :diminish
-    :config
-    (setq flycheck-display-errors-delay 0.5
-	  flycheck-indication-mode 'left-fringe
-	  flycheck-gcc-language-standard "c17"
-	  flycheck-gcc-pedantic t
-	  flycheck-cppcheck-checks '("warning" "style" "information"))
-    (add-to-list 'flycheck-gcc-include-path "~/src/include/")
-    (global-flycheck-mode t))
+(use-package flycheck
+  :ensure t
+  :diminish
+  :config
+  (setq flycheck-display-errors-delay 0.5
+	flycheck-indication-mode 'left-fringe
+	flycheck-gcc-language-standard "c17"
+	flycheck-gcc-pedantic t
+	flycheck-cppcheck-checks '("warning" "style" "information"))
+  (add-to-list 'flycheck-gcc-include-path "~/src/include/")
+  (global-flycheck-mode t))
 
-(use-package flycheck-mmark)
+(use-package flycheck-mmark
+  :ensure t)
 
 (use-package yasnippet
+  :ensure t
   :diminish
   :config
   (setq yas-snippet-dirs '("~/emacs/snippets")
@@ -210,12 +233,14 @@
 	 (yaml-mode . yas-minor-mode)))
 
 (use-package diminish
+  :ensure t
   :demand t
   :config
   (diminish 'auto-revert-mode)
   (diminish 'yas-minor-mode))
 
 (use-package transpose-frame
+  :ensure t
   :bind
   ("H-<up>" . rotate-frame)
   ("H-<down>" . transpose-frame))
@@ -318,12 +343,14 @@
   :hook (after-init . centaur-tabs-mode))
 
 (use-package chatgpt-shell
+  :ensure t
   :defer t
   :config
   (setq chatgpt-shell-openai-key
 	(auth-source-pick-first-password :host "api.openai.com")))
 
 (use-package minimap
+  :ensure t
   :defer t
   :config
   (setq minimap-window-location 'right
@@ -333,6 +360,7 @@
   :bind ("H-m" . minimap-mode))
 
 (use-package vterm
+  :ensure t
   :config
   (setq vterm-always-compile-module t
 	vterm-max-scrollback 100000
@@ -340,6 +368,7 @@
 	vterm-kill-buffer-on-exit t))
 
 (use-package vterm-toggle
+  :ensure t
   :config
   (setq vterm-toggle-scope 'dedicated
 	vterm-toggle-hide-method 'delete-window
@@ -349,12 +378,14 @@
   (vterm-toggle-show . goto-address-mode))
 
 (use-package winner
+  :ensure t
   :defer t
   :config
   (setq winner-ring-size 100)
   :bind ("H-z" . winner-undo))
 
 (use-package bufferbin
+  :ensure t
   :defer t
   :config
   (setq bufferbin-window-width 30
@@ -364,6 +395,7 @@
   :bind ("H-b" . bufferbin))
 
 (use-package bufferfile
+  :ensure t
   :defer t
   :config
   (setq bufferfile-use-vc t)
@@ -372,6 +404,7 @@
   ("H-<delete>" . bufferfile-delete))
 
 (use-package buffer-flip
+  :ensure t
   :defer t
   :config
   (setq buffer-flip-skip-patterns '("^\\*.+\\*\\b"))
@@ -383,6 +416,7 @@
    ( "M-ESC" .     buffer-flip-abort)))
 
 (use-package autoscratch
+  :ensure t
   :defer t
   :config
   (setq initial-major-mode 'autoscratch-mode
@@ -399,21 +433,24 @@
 	  ("."            . (fundamental-mode)))))
 
 (use-package buffer-move
-:defer t
-:config
-(setq buffer-move-stay-after-swap t)
-:bind
-(("H-<up>" . buf-move-up)
- ("H-<down>" . buf-move-down)
- ("H-<left>" . buf-move-left)
- ("H-<right>" . buf-move-right)))
+  :ensure t
+  :defer t
+  :config
+  (setq buffer-move-stay-after-swap t)
+  :bind
+  (("H-<up>" . buf-move-up)
+   ("H-<down>" . buf-move-down)
+   ("H-<left>" . buf-move-left)
+   ("H-<right>" . buf-move-right)))
 
 (use-package dumb-jump
+  :ensure t
   :defer t
   :config
   (setq dumb-jump-window 'current))
 
 (use-package magit
+  :ensure t
   :defer t
   :config
   (setq git-commit-major-mode 'log-edit-mode

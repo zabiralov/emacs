@@ -9,5 +9,6 @@
 !conf.d/
 !site-lisp/
 !snippets/
+!elpa/.keep
 
 conf.d/00sensitive.el
