@@ -1,6 +1,6 @@
 ;;; 02modes.el
 ;;;
-;;; Time-stamp: <2025-12-04 10:42:10 azabiralov>
+;;; Time-stamp: <2025-12-11 11:58:34 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -456,5 +456,18 @@
 	git-commit-cd-to-toplevel t
 	magit-delete-by-moving-to-trash nil
 	magit-slow-confirm nil))
+
+(use-package gist
+  :ensure t
+  :defer t)
+
+(use-package org-table
+  :defer t
+  :config
+  (setq org-table-default-size "4x4"
+	org-table-header-line-p t
+	org-table-automatic-realign t
+	org-table-auto-blank-field t))
+
 
 ;;; 02modes.el ends here
