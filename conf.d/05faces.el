@@ -1,13 +1,13 @@
-;;; 99faces.el --- Emacs faces settings
+;;; 05faces.el --- Emacs faces settings -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2025-12-04 11:00:58 azabiralov>
+;;; Time-stamp: <2025-12-30 11:01:36 azabiralov>
 ;;;
 ;;; Commentary:
 
 ;;; Code:
 
 
-(defun my-set-faces nil
+(defun my/set-faces nil
   "Set custom faces."
   (interactive)
 
@@ -45,7 +45,7 @@
   (set-face-attribute 'package-status-incompat nil :font "Source Code Pro 10")
   (set-face-attribute 'package-status-avail-obso nil :font "Source Code Pro 10"))
 
-(my-set-faces)
+(my/set-faces)
 
 (use-package doom-themes
   :ensure t)

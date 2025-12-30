@@ -1,6 +1,6 @@
-;;; init.el -- emacs main configuration file
+;;; init.el -- emacs main configuration file -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2024-09-09 18:51:58 azabiralov>
+;;; Time-stamp: <2025-12-30 12:03:29 azabiralov>
 ;;;
 ;;; Author: Alexander E. Zabiralov
 ;;

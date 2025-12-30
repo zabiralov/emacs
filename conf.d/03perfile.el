@@ -1,6 +1,6 @@
-;;; 10editmodes.el --- customizations for various modes
+;;; 03perfile.el --- customizations for various modes -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2025-12-04 10:30:43 azabiralov>
+;;; Time-stamp: <2025-12-30 11:01:08 azabiralov>
 ;;;
 ;;; Commentary:
 

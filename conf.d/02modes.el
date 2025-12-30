@@ -1,16 +1,13 @@
-;;; 02modes.el
+;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2025-12-11 11:58:34 azabiralov>
+;;; Time-stamp: <2025-12-30 12:53:20 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
 ;;; Code:
 
 (use-package dedicated
-  :ensure t
-  :bind (("H-`" . dedicated-mode)
-	 ("C-x d" . dedicated-mode)
-	 ("<f10>" . dedicated-mode)))
+  :ensure t)
 
 (use-package move-dup
   :ensure t
@@ -113,22 +110,22 @@
   :diminish
   :config
   (setq company-backends
-        '(company-dabbrev
-          company-dabbrev-code
-          company-semantic
-          company-capf
-          company-keywords
-	  company-yasnippet))
-  (setq   company-tooltip-limit 15
-	  company-idle-delay 0
-	  company-minimum-prefix-length 2
-	  company-dabbrev-minimum-length 2
-	  company-dabbrev-other-buffers nil
-	  company-dabbrev-ignore-case t
-	  company-dabbrev-downcase nil
-	  company-dabbrev-code-other-buffers t
-	  company-dabbrev-code-ignore-case t
-	  company-keywords-ignore-case t)
+	'(company-dabbrev
+	  company-dabbrev-code
+	  company-semantic
+	  company-capf
+	  company-keywords
+	  company-yasnippet)
+	company-tooltip-limit 15
+	company-idle-delay 0
+	company-minimum-prefix-length 2
+	company-dabbrev-minimum-length 2
+	company-dabbrev-other-buffers nil
+	company-dabbrev-ignore-case t
+	company-dabbrev-downcase nil
+	company-dabbrev-code-other-buffers t
+	company-dabbrev-code-ignore-case t
+	company-keywords-ignore-case t)
   (global-company-mode t))
 
 (use-package column-enforce-mode
@@ -223,7 +220,7 @@
 	yas-also-indent-empty-lines t
 	yas-choose-keys-first t
 	yas-wrap-around-region t)
-  (yas-reload-all)
+  ;;  (yas-reload-all)
   :bind
   ("<f4>" . yas-expand)
   ("M-<f4>" . yas-insert-snippet)
@@ -234,8 +231,8 @@
   :ensure t
   :demand t
   :config
-  (diminish 'auto-revert-mode)
-  (diminish 'yas-minor-mode))
+  (diminish #'auto-revert-mode)
+  (diminish #'yas-minor-mode))
 
 (use-package transpose-frame
   :ensure t
@@ -282,8 +279,6 @@
 	treemacs-width-increment 1
 	treemacs-width-is-initially-locked t
 	treemacs-workspace-switch-cleanup nil)
-  (treemacs-follow-mode -1)
-  (treemacs-git-mode -1)
   :bind
   ("H-y" . treemacs)
   :custom-face
@@ -316,29 +311,34 @@
   (treemacs-marked-file-face ((t ( :font "Cantarell 11"))))
   (treemacs-git-commit-diff-face ((t ( :font "Cantarell 11"))))
   (treemacs-async-loading-face ((t ( :font "Cantarell 11"))))
-  :hook (after-init . treemacs))
+  :hook
+  (after-init . treemacs))
 
 (use-package centaur-tabs
-  :ensure t
-  :config
-  (setq centaur-tabs-cycle-scope 'tabs
-	centaur-tabs-height 30
-	centaur-tabs-set-icons t
-	centaur-tabs-icon-type 'nerd-icons
-	centaur-tabs-set-modified-marker t
-	centaur-tabs-close-button "[x]"
-	centaur-tabs-set-bar 'under
-	x-underline-at-descent-line t
-	centaur-tabs-gray-out-icons t
-	centaur-tabs-icon-scale-factor 0.9
-	centaur-tabs-plain-icons t)
-  :custom-face
-  (centaur-tabs-default ((t ( :font "Cantarell 12"))))
-  (centaur-tabs-unselected ((t ( :font "Cantarell 12"))))
-  (centaur-tabs-selected ((t ( :font "Cantarell 12"))))
-  (centaur-tabs-selected-modified ((t ( :font "Cantarell 12"))))
-  (centaur-tabs-selected-unmodified ((t ( :font "Cantarell 12"))))
-  :hook (after-init . centaur-tabs-mode))
+:ensure t
+:config
+(setq centaur-tabs-cycle-scope 'tabs
+      centaur-tabs-height 30
+      centaur-tabs-set-icons t
+      centaur-tabs-icon-type 'nerd-icons
+      centaur-tabs-set-modified-marker t
+      centaur-tabs-close-button "[x]"
+      centaur-tabs-set-bar 'under
+      x-underline-at-descent-line t
+      centaur-tabs-gray-out-icons t
+      centaur-tabs-icon-scale-factor 0.9
+      centaur-tabs-plain-icons t
+      centaur-tabs-hide-tab-function (lambda (buf) (not (buffer-file-name buf))))
+:custom-face
+(centaur-tabs-default ((t ( :font "Cantarell 12"))))
+(centaur-tabs-unselected ((t ( :font "Cantarell 12"))))
+(centaur-tabs-selected ((t ( :font "Cantarell 12"))))
+(centaur-tabs-selected-modified ((t ( :font "Cantarell 12"))))
+(centaur-tabs-selected-unmodified ((t ( :font "Cantarell 12"))))
+:hook
+(after-init . centaur-tabs-mode)
+(vterm-mode . centaur-tabs-local-mode)
+(help-mode . centaur-tabs-local-mode))
 
 (use-package chatgpt-shell
   :ensure t
@@ -363,7 +363,10 @@
   (setq vterm-always-compile-module t
 	vterm-max-scrollback 100000
 	vterm-min-window-width 40
-	vterm-kill-buffer-on-exit t))
+	vterm-kill-buffer-on-exit t)
+  (add-to-list 'vterm-keymap-exceptions "<f10>")
+  :hook
+  (vterm-mode . dedicated-mode))
 
 (use-package vterm-toggle
   :ensure t
@@ -371,7 +374,11 @@
   (setq vterm-toggle-scope 'dedicated
 	vterm-toggle-hide-method 'delete-window
 	vterm-toggle-reset-window-configration-after-exit t)
-  :bind ("H-t" . vterm-toggle)
+  (with-eval-after-load 'vterm
+    (define-key vterm-mode-map (kbd "<f10>") #'vterm-toggle))
+  :bind
+  ("<f10>" . vterm-toggle)
+  ("H-t" . vterm-toggle)
   :hook
   (vterm-toggle-show . goto-address-mode))
 
@@ -461,13 +468,14 @@
   :ensure t
   :defer t)
 
-(use-package org-table
-  :defer t
+(use-package org
   :config
   (setq org-table-default-size "4x4"
 	org-table-header-line-p t
 	org-table-automatic-realign t
 	org-table-auto-blank-field t))
 
+(use-package rainbow-delimiters
+  :ensure t)
 
 ;;; 02modes.el ends here

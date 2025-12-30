@@ -1,6 +1,6 @@
-;;; 01global.el --- global Emacs configuration
+;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2025-05-29 00:45:50 azabiralov>
+;;; Time-stamp: <2025-12-30 11:10:02 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -72,7 +72,7 @@
 
 ;; Global hooks
 ;;
-(add-hook 'minibuffer-setup-hook '(lambda() (highlight-symbol-mode -1)))
+(add-hook 'minibuffer-setup-hook #'(lambda () (highlight-symbol-mode -1)))
 
 ;; Update timestamp with file saving
 (add-hook 'before-save-hook 'time-stamp)
