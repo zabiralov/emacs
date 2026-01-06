@@ -1,6 +1,6 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2025-12-30 12:53:20 azabiralov>
+;;; Time-stamp: <2026-01-05 16:07:31 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -477,5 +477,14 @@
 
 (use-package rainbow-delimiters
   :ensure t)
+
+(use-package lsp-mode
+  :ensure t
+  :defer t
+  :config
+  (setq lsp-client-packages '(lsp-go)
+	lsp-tcp-connection-timeout 5))
+
+
 
 ;;; 02modes.el ends here
