@@ -1,6 +1,6 @@
 ;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2025-12-30 11:10:02 azabiralov>
+;;; Time-stamp: <2026-01-08 17:58:45 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -22,9 +22,10 @@
       split-width-threshold nil
       use-file-dialog nil
       visible-bell nil
-      warning-minimum-level :error
       x-stretch-cursor t
-      inhibit-splash-screen t)
+      inhibit-splash-screen t
+      native-comp-verbose 0
+      warning-minimum-level :error)
 
 
 (dolist (my-init-frame-options '((fullscreen . maximized)))
@@ -47,7 +48,6 @@
 (goto-address-mode t)
 (pixel-scroll-precision-mode t)
 (winner-mode t)
-;; (global-tab-line-mode t)
 
 
 ;; menu-bar-mode :: menu bar
@@ -57,12 +57,13 @@
       buffers-menu-max-size 20
       buffers-menu-buffer-name-length 20
       buffers-menu-show-status t)
-(menu-bar-mode -1)
+(menu-bar-mode t)
 
 
 ;; default new buffer settings
 ;;
 (setq-default cursor-type 'bar
+	      message-log-max nil
               tab-width 8
               fill-column 80
 	      major-mode 'text-mode

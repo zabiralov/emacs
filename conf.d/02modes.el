@@ -1,6 +1,6 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-01-05 16:07:31 azabiralov>
+;;; Time-stamp: <2026-01-08 18:04:21 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -23,16 +23,9 @@
   (setq mc/insert-numbers-default 1
         mc/match-cursor-style nil))
 
-(use-package epa-file
-  :config
-  (setq epa-file-select-keys "none"
-        epa-file-cache-passphrase-for-symmetric-encryption t
-        epg-pinentry-mode 'loopback
-        epa-popup-info-window nil))
-
 (use-package aggressive-indent
   :ensure t
-  :diminish "A-IND"
+  :diminish " A"
   :config
   (setq aggressive-indent-comments-too t
 	aggressive-indent-sit-for-time 0.01))
@@ -118,56 +111,8 @@
 	  company-yasnippet)
 	company-tooltip-limit 15
 	company-idle-delay 0
-	company-minimum-prefix-length 2
-	company-dabbrev-minimum-length 2
-	company-dabbrev-other-buffers nil
-	company-dabbrev-ignore-case t
-	company-dabbrev-downcase nil
-	company-dabbrev-code-other-buffers t
-	company-dabbrev-code-ignore-case t
-	company-keywords-ignore-case t)
+	company-minimum-prefix-length 2)
   (global-company-mode t))
-
-(use-package column-enforce-mode
-  :ensure t
-  :diminish
-  :config
-  (setq column-enforce-column 80
-	column-enforce-comments t)
-  (column-enforce-mode t))
-
-(use-package indent-guide
-  :ensure t
-  :diminish
-  :demand t
-  :config
-  (setq indent-guide-char ">"
-	indent-guide-delay 0.5
-	indent-guide-threshold 1
-	indent-guide-recursive t)
-
-  (indent-guide-global-mode))
-
-(use-package autorevert
-  :ensure t
-  :diminish
-  :config
-  (setq auto-revert-interval 10
-	auto-revert-stop-on-user-input t
-	auto-revert-mode t))
-
-(use-package eldoc
-  :ensure t
-  :config
-  (setq eldoc-idle-delay 0.6
-	eldoc-print-after-edit nil
-	eldoc-minor-mode-string nil))
-
-(use-package savehist
-  :ensure t
-  :config
-  (setq savehist-file "~/.emacs.d/var/savehist/minibuffer")
-  (savehist-mode t))
 
 (use-package super-save
   :ensure t
@@ -178,22 +123,6 @@
 	super-save-idle-duration 10
 	auto-save-default nil)
   (super-save-mode t))
-
-(use-package uniquify
-  :demand t
-  :config
-  (setq uniquify-buffer-name-style 'forward
-	uniquify-strip-common-suffix t
-	uniquify-separator "/"
-	uniquify-after-kill-buffer-p t
-	uniquify-ignore-buffers-re "^\\*"))
-
-(use-package transient
-  :ensure t
-  :config
-  (setq transient-levels-file (expand-file-name "var/treemacs/transient/levels.el" user-emacs-directory)
-	transient-values-file (expand-file-name "var/treemacs/transient/values.el" user-emacs-directory)
-	transient-history-file (expand-file-name "var/treemacs/transient/history.el" user-emacs-directory)))
 
 (use-package flycheck
   :ensure t
@@ -314,49 +243,6 @@
   :hook
   (after-init . treemacs))
 
-(use-package centaur-tabs
-:ensure t
-:config
-(setq centaur-tabs-cycle-scope 'tabs
-      centaur-tabs-height 30
-      centaur-tabs-set-icons t
-      centaur-tabs-icon-type 'nerd-icons
-      centaur-tabs-set-modified-marker t
-      centaur-tabs-close-button "[x]"
-      centaur-tabs-set-bar 'under
-      x-underline-at-descent-line t
-      centaur-tabs-gray-out-icons t
-      centaur-tabs-icon-scale-factor 0.9
-      centaur-tabs-plain-icons t
-      centaur-tabs-hide-tab-function (lambda (buf) (not (buffer-file-name buf))))
-:custom-face
-(centaur-tabs-default ((t ( :font "Cantarell 12"))))
-(centaur-tabs-unselected ((t ( :font "Cantarell 12"))))
-(centaur-tabs-selected ((t ( :font "Cantarell 12"))))
-(centaur-tabs-selected-modified ((t ( :font "Cantarell 12"))))
-(centaur-tabs-selected-unmodified ((t ( :font "Cantarell 12"))))
-:hook
-(after-init . centaur-tabs-mode)
-(vterm-mode . centaur-tabs-local-mode)
-(help-mode . centaur-tabs-local-mode))
-
-(use-package chatgpt-shell
-  :ensure t
-  :defer t
-  :config
-  (setq chatgpt-shell-openai-key
-	(auth-source-pick-first-password :host "api.openai.com")))
-
-(use-package minimap
-  :ensure t
-  :defer t
-  :config
-  (setq minimap-window-location 'right
-	minimap-minimum-width 20
-	minimap-buffer-name "*minimap*"
-	minimap-hide-scroll-bar t)
-  :bind ("H-m" . minimap-mode))
-
 (use-package vterm
   :ensure t
   :config
@@ -382,23 +268,6 @@
   :hook
   (vterm-toggle-show . goto-address-mode))
 
-(use-package winner
-  :ensure t
-  :defer t
-  :config
-  (setq winner-ring-size 100)
-  :bind ("H-z" . winner-undo))
-
-(use-package bufferbin
-  :ensure t
-  :defer t
-  :config
-  (setq bufferbin-window-width 30
-	bufferbin-direction 'right
-	bufferbin-buffer-name "*bufferbin*"
-	bufferbin-header nil)
-  :bind ("H-b" . bufferbin))
-
 (use-package bufferfile
   :ensure t
   :defer t
@@ -420,23 +289,6 @@
    ( "M-S-<tab>" . buffer-flip-backward)
    ( "M-ESC" .     buffer-flip-abort)))
 
-(use-package autoscratch
-  :ensure t
-  :defer t
-  :config
-  (setq initial-major-mode 'autoscratch-mode
-	autoscratch-reset-default-directory t)
-  (setq autoscratch-triggers-alist
-	'(("[(;]"         . (emacs-lisp-mode))
-	  ("#"            . (autoscratch-select
-			     '(("perl"   . (cperl-mode))
-			       ("ruby"   . (ruby-mode))
-			       ("conf"   . (conf-unix-mode))
-			       ("shell"  . (shell-script-mode)))))
-	  ("[-a-zA-Z0-9]" . (text-mode))
-	  ("/"            . (c-mode))
-	  ("."            . (fundamental-mode)))))
-
 (use-package buffer-move
   :ensure t
   :defer t
@@ -447,26 +299,6 @@
    ("H-<down>" . buf-move-down)
    ("H-<left>" . buf-move-left)
    ("H-<right>" . buf-move-right)))
-
-(use-package dumb-jump
-  :ensure t
-  :defer t
-  :config
-  (setq dumb-jump-window 'current))
-
-(use-package magit
-  :ensure t
-  :defer t
-  :config
-  (setq git-commit-major-mode 'log-edit-mode
-	git-commit-summary-max-length 72
-	git-commit-cd-to-toplevel t
-	magit-delete-by-moving-to-trash nil
-	magit-slow-confirm nil))
-
-(use-package gist
-  :ensure t
-  :defer t)
 
 (use-package org
   :config
@@ -485,6 +317,12 @@
   (setq lsp-client-packages '(lsp-go)
 	lsp-tcp-connection-timeout 5))
 
+(use-package vertico
+  :ensure t
+  :config
+  (setq vertico-count 8
+	vertico-preselect 'first
+	vertico-sort-function 'vertico-sort-alpha))
 
 
 ;;; 02modes.el ends here

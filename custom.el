@@ -32,29 +32,27 @@
  '(package-selected-packages
    '(adwaita-dark-theme aggressive-fill-paragraph aggressive-indent all-the-icons
 			almost-mono-themes ansible ansible-vault anyins
-			auto-complete auto-dark auto-dim-other-buffers
-			autoscratch avy buffer-flip buffer-move
-			buffer-terminator bufferbin bufferfile c-eldoc caser
-			centaur-tabs chatgpt-shell column-enforce-mode company
-			company-ansible company-c-headers company-inf-ruby
-			company-nginx company-shell company-terraform
-			company-wordfreq cue-sheet-mode current-window-only dash
-			dedicated demap diminish dired-sidebar
-			docker-compose-mode dockerfile-mode doom-themes
-			dumb-jump emr flycheck flycheck-clang-analyzer
+			auto-complete auto-dark auto-dim-other-buffers avy
+			buffer-flip buffer-move buffer-terminator bufferfile
+			c-eldoc caser company company-ansible company-c-headers
+			company-inf-ruby company-nginx company-shell
+			company-terraform company-wordfreq cue-sheet-mode
+			current-window-only dash dedicated demap diminish
+			dired-sidebar docker-compose-mode dockerfile-mode
+			doom-themes emr flycheck flycheck-clang-analyzer
 			flycheck-golangci-lint flycheck-guile flycheck-mmark
-			flycheck-yamllint gist git-gutter go-mode grugru
-			hcl-mode highlight-symbol ibuffer-sidebar indent-guide
-			jinja2-mode jq-format json-mode lsp-mode lsp-treemacs
-			lsp-ui magit magit-gitlab markdown-mode material-theme
-			minimap modus-themes move-dup multi-vterm
-			multiple-cursors nasm-mode nerd-icons nginx-mode
-			org-brain org-journal org-node perl-doc py-autopep8
-			rainbow-delimiters reverse-im smart-tabs-mode
-			smartparens solarized-theme sql-clickhouse ssh-agency
-			super-save tabspaces toml-mode transpose-frame treemacs
-			treemacs-magit vterm vterm-hotkey vterm-toggle ws-butler
-			yaml-mode yascroll yasnippet))
+			flycheck-yamllint git-gutter go-mode grugru hcl-mode
+			highlight-symbol ibuffer-sidebar jinja2-mode jq-format
+			json-mode lsp-mode lsp-treemacs lsp-ui magit
+			magit-gitlab markdown-mode material-theme modus-themes
+			move-dup multi-vterm multiple-cursors nasm-mode
+			nerd-icons nginx-mode org-brain org-journal org-node
+			perl-doc py-autopep8 rainbow-delimiters reverse-im
+			smart-tabs-mode smartparens solarized-theme
+			sql-clickhouse ssh-agency super-save tabspaces toml-mode
+			transpose-frame treemacs treemacs-magit vertico vterm
+			vterm-hotkey vterm-toggle ws-butler yaml-mode yascroll
+			yasnippet))
  '(warning-suppress-log-types '((comp) (comp)))
  '(warning-suppress-types '((comp))))
 
