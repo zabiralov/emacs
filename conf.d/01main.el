@@ -1,6 +1,6 @@
 ;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-01-08 17:58:45 azabiralov>
+;;; Time-stamp: <2026-01-08 19:36:14 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -48,7 +48,7 @@
 (goto-address-mode t)
 (pixel-scroll-precision-mode t)
 (winner-mode t)
-
+(context-menu-mode t)
 
 ;; menu-bar-mode :: menu bar
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Menu-Bar.html#Menu-Bar
@@ -58,6 +58,9 @@
       buffers-menu-buffer-name-length 20
       buffers-menu-show-status t)
 (menu-bar-mode t)
+
+;; Disable F10 completelly for menu bar-mode
+(global-unset-key (kbd "<f10>"))
 
 
 ;; default new buffer settings

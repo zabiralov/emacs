@@ -44,15 +44,15 @@
 			flycheck-yamllint git-gutter go-mode grugru hcl-mode
 			highlight-symbol ibuffer-sidebar jinja2-mode jq-format
 			json-mode lsp-mode lsp-treemacs lsp-ui magit
-			magit-gitlab markdown-mode material-theme modus-themes
-			move-dup multi-vterm multiple-cursors nasm-mode
-			nerd-icons nginx-mode org-brain org-journal org-node
-			perl-doc py-autopep8 rainbow-delimiters reverse-im
-			smart-tabs-mode smartparens solarized-theme
-			sql-clickhouse ssh-agency super-save tabspaces toml-mode
-			transpose-frame treemacs treemacs-magit vertico vterm
-			vterm-hotkey vterm-toggle ws-butler yaml-mode yascroll
-			yasnippet))
+			magit-gitlab marginalia markdown-mode material-theme
+			modus-themes move-dup multi-vterm multiple-cursors
+			nasm-mode nerd-icons nginx-mode orderless org-brain
+			org-journal org-node perl-doc py-autopep8
+			rainbow-delimiters reverse-im smart-tabs-mode
+			smartparens solarized-theme sql-clickhouse ssh-agency
+			super-save tabspaces toml-mode transpose-frame treemacs
+			treemacs-magit vertico vterm vterm-hotkey vterm-toggle
+			ws-butler yaml-mode yascroll yasnippet))
  '(warning-suppress-log-types '((comp) (comp)))
  '(warning-suppress-types '((comp))))
 

@@ -1,6 +1,6 @@
 ;;; init.el -- emacs main configuration file -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2025-12-30 12:03:29 azabiralov>
+;;; Time-stamp: <2026-01-08 19:15:19 azabiralov>
 ;;;
 ;;; Author: Alexander E. Zabiralov
 ;;
@@ -46,13 +46,13 @@
 
 ;; Additional parts of configuration:
 ;;
-(defun my-load-el-from-directory (dir)
+(defun my/load-el-from-directory (dir)
   "Load all .el files from specified DIR directory."
   (let ((load-it (lambda (f)
 		   (load-file (concat (file-name-as-directory dir) f)))))
     (mapc load-it (directory-files dir nil "\\.el$"))))
 
-(my-load-el-from-directory "~/emacs/conf.d")
+(my/load-el-from-directory "~/emacs/conf.d")
 
 ;;
 ;;; init.el ends here
