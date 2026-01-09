@@ -1,6 +1,6 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-01-08 19:18:11 azabiralov>
+;;; Time-stamp: <2026-01-09 16:45:59 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -290,7 +290,7 @@
   :ensure t
   :defer t
   :custom
-  (setq buffer-move-stay-after-swap t)
+  (buffer-move-stay-after-swap t)
   :bind
   (("H-<up>" . buf-move-up)
    ("H-<down>" . buf-move-down)
@@ -298,11 +298,22 @@
    ("H-<right>" . buf-move-right)))
 
 (use-package org
+  :ensure nil
   :custom
-  (setq org-table-default-size "4x4"
-	org-table-header-line-p t
-	org-table-automatic-realign t
-	org-table-auto-blank-field t))
+  (org-table-default-size "4x4")
+  (org-table-header-line-p t)
+  (org-table-automatic-realign t)
+  (org-table-auto-blank-field t))
+
+(use-package magit
+  :ensure nil
+  :custom
+  (magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1)
+  (magit-save-repository-buffers 'dontask)
+  (magit-diff-refine-hunk 'all)
+  (magit-commit-show-diff nil)
+  :bind
+  ("C-x g" . magit-status))
 
 (use-package rainbow-delimiters
   :ensure t)
@@ -319,7 +330,7 @@
   :custom
   (vertico-count 8)
   (vertico-preselect 'first)
-  (vertico-sort-function 'vertico-sort-alpha)
+  (vertico-sort-function 'vertico-sort-history-length-alpha)
   :config
   (vertico-mode))
 

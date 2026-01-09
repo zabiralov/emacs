@@ -30,29 +30,16 @@
      "/home/azabiralov/org/todo/front-door.org"
      "/home/azabiralov/org/todo/katio.org"))
  '(package-selected-packages
-   '(adwaita-dark-theme aggressive-fill-paragraph aggressive-indent all-the-icons
-			almost-mono-themes ansible ansible-vault anyins
-			auto-complete auto-dark auto-dim-other-buffers avy
-			buffer-flip buffer-move buffer-terminator bufferfile
-			c-eldoc caser company company-ansible company-c-headers
-			company-inf-ruby company-nginx company-shell
-			company-terraform company-wordfreq cue-sheet-mode
-			current-window-only dash dedicated demap diminish
-			dired-sidebar docker-compose-mode dockerfile-mode
-			doom-themes emr flycheck flycheck-clang-analyzer
-			flycheck-golangci-lint flycheck-guile flycheck-mmark
-			flycheck-yamllint git-gutter go-mode grugru hcl-mode
-			highlight-symbol ibuffer-sidebar jinja2-mode jq-format
-			json-mode lsp-mode lsp-treemacs lsp-ui magit
-			magit-gitlab marginalia markdown-mode material-theme
-			modus-themes move-dup multi-vterm multiple-cursors
-			nasm-mode nerd-icons nginx-mode orderless org-brain
-			org-journal org-node perl-doc py-autopep8
-			rainbow-delimiters reverse-im smart-tabs-mode
-			smartparens solarized-theme sql-clickhouse ssh-agency
-			super-save tabspaces toml-mode transpose-frame treemacs
-			treemacs-magit vertico vterm vterm-hotkey vterm-toggle
-			ws-butler yaml-mode yascroll yasnippet))
+   '(aggressive-indent buffer-flip buffer-move bufferfile company
+		       current-window-only dedicated diminish
+		       docker-compose-mode dockerfile-mode doom-themes
+		       flycheck-mmark geiser-guile geiser-racket git-gutter
+		       go-mode grugru highlight-symbol jinja2-mode json-mode
+		       lsp-mode marginalia move-dup multiple-cursors nasm-mode
+		       nginx-mode orderless rainbow-delimiters reverse-im
+		       smartparens sql-clickhouse super-save terraform-mode
+		       toml-mode transpose-frame treemacs vertico vterm-toggle
+		       ws-butler yasnippet))
  '(warning-suppress-log-types '((comp) (comp)))
  '(warning-suppress-types '((comp))))
 
