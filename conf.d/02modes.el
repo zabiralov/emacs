@@ -323,7 +323,15 @@
   :defer t
   :custom
   (lsp-client-packages '(lsp-go))
-  (lsp-tcp-connection-timeout 5))
+  (lsp-tcp-connection-timeout 5)
+  (lsp-go-gopls-server-args '("-remote=unix;/tmp/gopls.socket")))
+
+(use-package lsp-ui
+  :ensure t
+  :defer t
+  :custom
+  (lsp-ui-doc-position 'top)
+  (lsp-ui-doc-side 'right))
 
 (use-package vertico
   :ensure t

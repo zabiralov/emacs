@@ -118,7 +118,10 @@
   :defer t
   :custom
   (go-fontify-function-calls t)
-  (go-fontify-variables t))
+  (go-fontify-variables t)
+  :hook
+	((before-save-hook . lsp-format-buffer)
+		(before-save-hook . lsp-organize-imports)))
 
 (use-package nasm-mode
   :ensure t
