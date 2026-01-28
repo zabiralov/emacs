@@ -69,6 +69,7 @@
 	      message-log-max nil
               tab-width 8
               fill-column 80
+	      default-justification 'full
 	      major-mode 'text-mode
               mode-line-format
               (list "%+ " "%4l %4c " "%6p " "%b " "%f " "%e" mode-line-modes))

@@ -355,5 +355,11 @@
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles partial-completion)))))
 
+(use-package scratch
+  :ensure t
+  :defer t
+  :bind
+  ("<f9>" . scratch))
+
 
 ;;; 02modes.el ends here
