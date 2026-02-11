@@ -6,6 +6,48 @@
 ;;
 ;;; Code:
 
+(use-package dired
+  :custom
+  (dired-kill-when-opening-new-buffer t))
+
+(use-package tool-bar
+  :custom
+  (tool-bar-position 'top)
+  (tool-bar-style 'both-horiz)
+  :config
+  (add-to-list 'image-load-path "~/emacs/etc/images/")
+  (setq tool-bar-map (make-sparse-keymap))
+  (tool-bar-add-item "icons/new" 'find-file 'new :label " New" :help "New...")
+  (tool-bar-add-item "icons/open" 'find-file 'open :label " Open" :help "Open...")
+  (tool-bar-add-item "icons/save" 'save-buffer 'save :label " Save" :help "Save...")
+  (tool-bar-add-item "icons/saveas" 'write-file 'saveas :label " Save As" :help "Save as...")
+  (tool-bar-add-item "icons/undo" 'undo 'undo :label " Undo" :help "Undo")
+  (tool-bar-add-item "icons/redo" 'undo-redo 'redo :label " Redo" :help "Redo")
+  (tool-bar-add-item "icons/refresh" 'revert-buffer 'revert :label " Reload" :help "Reload buffer from file...")
+  (tool-bar-mode t))
+
+(use-package help-mode
+  :custom
+  (help-clean-buttons t)
+  :hook
+  ((help-mode . (lambda () (tab-line-mode -1)))))
+
+(use-package tab-line
+  :custom
+  (tab-line-new-button-show nil)
+  (tab-line-tab-name-truncated-max 32)
+  :config
+  (global-tab-line-mode t))
+
+(use-package reverse-im
+  :ensure t
+  :config
+  (add-to-list 'reverse-im-input-methods "russian-computer")
+  (reverse-im-mode t))
+
+(use-package current-window-only
+  :ensure t)
+
 (use-package dedicated
   :ensure t)
 
@@ -236,7 +278,7 @@
   (treemacs-git-commit-diff-face ((t ( :font "Cantarell 11"))))
   (treemacs-async-loading-face ((t ( :font "Cantarell 11"))))
   :hook
-  (after-init . treemacs))
+  ((after-init . treemacs)))
 
 (use-package vterm
   :ensure t
@@ -248,7 +290,8 @@
   :config
   (add-to-list 'vterm-keymap-exceptions "<f10>")
   :hook
-  (vterm-mode . dedicated-mode))
+  ((vterm-mode . dedicated-mode)
+   (vterm-mode . (lambda () (tab-line-mode -1)))))
 
 (use-package vterm-toggle
   :ensure t
@@ -263,7 +306,7 @@
   ("<f10>" . vterm-toggle)
   ("H-t" . vterm-toggle)
   :hook
-  (vterm-toggle-show . goto-address-mode))
+  ((vterm-toggle-show . goto-address-mode)))
 
 (use-package bufferfile
   :ensure t
@@ -313,7 +356,9 @@
   (magit-diff-refine-hunk 'all)
   (magit-commit-show-diff nil)
   :bind
-  ("C-x g" . magit-status))
+  ("C-x g" . magit-status)
+  :hook
+  ((magit . (lambda () (tab-line-mode -1)))))
 
 (use-package rainbow-delimiters
   :ensure t)

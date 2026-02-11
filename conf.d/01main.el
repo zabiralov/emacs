@@ -25,8 +25,12 @@
       x-stretch-cursor t
       inhibit-splash-screen t
       native-comp-verbose 0
-      warning-minimum-level :error)
-
+      warning-minimum-level :error
+      help-window-select nil
+      use-system-tooltips nil
+      use-dialog-box nil
+      use-short-answers t
+      icon-preference 'text)
 
 (dolist (my-init-frame-options '((fullscreen . maximized)))
   (add-to-list 'initial-frame-alist my-init-frame-options))
@@ -88,18 +92,5 @@
 (set-language-environment 'utf-8)
 (setq default-input-method 'russian-computer)
 
-
-;; reverse-im :: translate input sequences to english
-;; https://github.com/a13/reverse-im.el
-;;
-(use-package reverse-im
-  :ensure t
-  :config
-  (add-to-list 'reverse-im-input-methods "russian-computer")
-  (reverse-im-mode t))
-
-
-(use-package current-window-only
-  :ensure t)
 
 ;;; 01main.el ends here
