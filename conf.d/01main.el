@@ -27,7 +27,7 @@
       native-comp-verbose 0
       warning-minimum-level :error
       help-window-select nil
-      use-system-tooltips nil
+      use-system-tooltips t
       use-dialog-box nil
       use-short-answers t
       icon-preference 'text)

@@ -10,5 +10,6 @@
 !site-lisp/
 !snippets/
 !elpa/.keep
+!etc/images/icons/*.xpm
 
 conf.d/00sensitive.el
