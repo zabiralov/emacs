@@ -15,21 +15,6 @@
   (tool-bar-position 'top)
   (tool-bar-style 'both-horiz)
   :config
-  (add-to-list 'image-load-path "~/emacs/etc/images/")
-  (setq tool-bar-map (make-sparse-keymap))
-  (tool-bar-add-item "icons/new" 'find-file 'new :label " New" :help "New...")
-  (tool-bar-add-item "icons/open" 'find-file 'open :label " Open" :help "Open...")
-  (tool-bar-add-item "icons/diropen" 'dired 'dired :label " Open Dir" :help "Open directory via Dired...")
-  (tool-bar-add-item "icons/save" 'save-buffer 'save :label " Save" :help "Save...")
-  (tool-bar-add-item "icons/saveas" 'write-file 'saveas :label " Save As" :help "Save as...")
-  (tool-bar-add-item "icons/undo" 'undo 'undo :label " Undo" :help "Undo")
-  (tool-bar-add-item "icons/redo" 'undo-redo 'redo :label " Redo" :help "Redo")
-  (tool-bar-add-item "icons/refresh" 'revert-buffer 'revert :label " Reload" :help "Reload buffer from file...")
-  (tool-bar-add-item "icons/redo" 'undo-redo 'redo :label " Redo" :help "Redo")
-  (tool-bar-add-item "icons/zoom-in" 'text-scale-increase 'zoomin :label " Zoom In" :help "Zoom buffer (increase font size)")
-  (tool-bar-add-item "icons/zoom-out" 'text-scale-decrease 'zoomout :label " Zoom Out" :help "Zoom buffer (decrease font size)")
-  (tool-bar-add-item "icons/exit" 'save-buffers-kill-terminal 'quit :label " Exit" :help "Save buffers and exit...")
-  (advice-add 'tool-bar-setup :override #'ignore)
   (tool-bar-mode t))
 
 (use-package help-mode

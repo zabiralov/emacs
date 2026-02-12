@@ -24,13 +24,11 @@
       visible-bell nil
       x-stretch-cursor t
       inhibit-splash-screen t
-      native-comp-verbose 0
-      warning-minimum-level :error
       help-window-select nil
       use-system-tooltips t
       use-dialog-box nil
-      use-short-answers t
-      icon-preference 'text)
+      use-short-answers t)
+
 
 (dolist (my-init-frame-options '((fullscreen . maximized)))
   (add-to-list 'initial-frame-alist my-init-frame-options))
@@ -46,7 +44,6 @@
 (desktop-save-mode -1)
 (line-number-mode -1)
 (scroll-bar-mode t)
-(tool-bar-mode -1)
 (blink-cursor-mode t)
 (delete-selection-mode t)
 (goto-address-mode t)
