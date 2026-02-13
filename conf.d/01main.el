@@ -7,11 +7,14 @@
 ;;; Code:
 ;;
 
-(setq auth-sources '("~/.netrc")
+(set-language-environment 'utf-8)
+
+(setq default-input-method 'russian-computer
+      auth-sources '("~/.netrc")
       default-justification 'full
       frame-title-format "GNU Emacs"
       initial-scratch-message nil
-      kill-ring-max 3
+      kill-ring-max 5
       kill-whole-line t
       make-backup-files nil
       max-mini-window-height 0.5
@@ -38,27 +41,73 @@
   (add-to-list 'default-frame-alist my-def-frame-options))
 
 
-;; enable/disable basic minor modes on startup
+;; Enable or disable basic minor modes on startup
 ;;
 (column-number-mode -1)
 (desktop-save-mode -1)
 (line-number-mode -1)
-(scroll-bar-mode t)
 (blink-cursor-mode t)
 (delete-selection-mode t)
 (goto-address-mode t)
 (pixel-scroll-precision-mode t)
-(winner-mode t)
 (context-menu-mode t)
 
-;; menu-bar-mode :: menu bar
-;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Menu-Bar.html#Menu-Bar
-;;
-(setq yank-menu-length 20
-      buffers-menu-max-size 20
-      buffers-menu-buffer-name-length 20
-      buffers-menu-show-status t)
-(menu-bar-mode t)
+;; Configuration for built-in packages
+;; 
+(use-package scroll-bar
+  :ensure nil
+  :custom
+  (scroll-bar-mode 'right)
+  :config
+  (scroll-bar-mode t))
+
+(use-package winner
+  :ensure nil
+  :custom
+  (winner-ring-size 20)
+  :config
+  (winner-mode t))
+
+(use-package menu-bar
+  :ensure nil
+  :custom
+  (yank-menu-length 5)
+  (yank-menu-max-items)
+  :config
+  (setq buffers-menu-max-size 20
+	buffers-menu-buffer-name-length 20
+	buffers-menu-show-status t)
+  (menu-bar-mode t))
+
+(use-package dired
+  :ensure nil
+  :custom
+  (dired-kill-when-opening-new-buffer t))
+
+(use-package tool-bar
+  :ensure nil
+  :custom
+  (tool-bar-position 'top)
+  (tool-bar-style 'both-horiz)
+  :config
+  (tool-bar-mode t))
+
+(use-package help-mode
+  :ensure nil
+  :custom
+  (help-clean-buttons t)
+  :hook
+  ((help-mode . (lambda () (tab-line-mode -1)))))
+
+(use-package tab-line
+  :ensure nil
+  :custom
+  (tab-line-new-button-show nil)
+  (tab-line-tab-name-truncated-max 32)
+  (tab-line-exclude-modes '(help-mode magit-mode vterm-mode))
+  :config
+  (global-tab-line-mode -1))
+
 
 ;; Disable F10 completelly for menu bar-mode
 (global-unset-key (kbd "<f10>"))
@@ -76,18 +125,13 @@
               (list "%+ " "%4l %4c " "%6p " "%b " "%f " "%e" mode-line-modes))
 
 
-;; Global hooks
-;;
-(add-hook 'minibuffer-setup-hook #'(lambda () (highlight-symbol-mode -1)))
+;; Special settings per buffer name
+;; 
+(add-to-list 'display-buffer-alist
+             '("\\*Buffer List\\*"
+               (display-buffer-same-window)
+               (inhibit-same-window . nil)))
 
-;; Update timestamp with file saving
-(add-hook 'before-save-hook 'time-stamp)
-
-
-;; human languages support
-;;
-(set-language-environment 'utf-8)
-(setq default-input-method 'russian-computer)
 
 
 ;;; 01main.el ends here

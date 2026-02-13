@@ -10,6 +10,15 @@
 (add-to-list 'image-load-path "~/emacs/etc/images/")
 
 
+(defun my/switch-to-scratch ()
+  "Switch to scratch buffer, if it exists, if not - create new and switch."
+  (interactive)
+  (let ((scratch-buffer (get-buffer-create "*scratch*")))
+    (with-current-buffer scratch-buffer
+      (when (eq major-mode 'fundamental-mode)
+        (lisp-interaction-mode)))
+    (switch-to-buffer scratch-buffer)))
+
 (defun my/quit-tool-bar ()
   "Universal exit - simulate `q` press for exit."
   (interactive)
@@ -20,22 +29,43 @@
 
 (defvar my/tool-bar-map
   (let ((map (make-sparse-keymap)))
-    (tool-bar-local-item "icons/new" 'find-file 'new map :label " New" :help "New...")
-    (tool-bar-local-item "icons/open" 'find-file 'open map :label " Open" :help "Open...")
-    (tool-bar-local-item "icons/diropen" 'dired 'dired map :label " Open Dir" :help "Open directory in Dired...")
-    (tool-bar-local-item "icons/save" 'save-buffer 'save map :label " Save" :help "Save...")
-    (tool-bar-local-item "icons/saveas" 'write-file 'saveas map :label " Save As" :help "Save with new name")
-    (tool-bar-local-item "icons/undo" 'undo 'undo map :label " Undo" :help "Undo last operation")
-    (tool-bar-local-item "icons/redo" 'undo-redo 'redo map :label " Redo" :help "Redo canceled operation")
+    (tool-bar-local-item "icons/new" 'find-file 'new map
+			 :label " New" :help "New...")
+    (tool-bar-local-item "icons/open" 'find-file 'open map
+			 :label " Open" :help "Open...")
+    (tool-bar-local-item "icons/diropen" 'dired 'dired map
+			 :label " Open Dir" :help "Open directory in Dired...")
+
+    (tool-bar-local-item "icons/save" 'save-buffer 'save map
+			 :label " Save" :help "Save...")
+    (tool-bar-local-item "icons/saveas" 'write-file 'saveas map
+			 :label " Save As" :help "Save with new name")
     
-    (tool-bar-local-item "icons/refresh" 'revert-buffer 'revert map :label " Reload" :help "Reload buffer from file...")
+    (tool-bar-local-item "icons/undo" 'undo 'undo map
+			 :label " Undo" :help "Undo last operation")
+    (tool-bar-local-item "icons/redo" 'undo-redo 'redo map
+			 :label " Redo" :help "Redo canceled operation")
+    
+    (tool-bar-local-item "icons/refresh" 'revert-buffer 'revert map
+			 :label " Reload" :help "Reload buffer from file...")
 
-    (tool-bar-local-item "icons/prev-node" 'previous-buffer 'prev map :label " Prev Buf" :help "Switch to previous buffer")
-    (tool-bar-local-item "icons/next-node" 'next-buffer 'next map :label " Next Buf" :help "Switch to next buffer")
+    (tool-bar-local-item "icons/prev-node" 'previous-buffer 'prev map
+			 :label " Prev Buf" :help "Switch to previous buffer")
+    (tool-bar-local-item "icons/next-node" 'next-buffer 'next map
+			 :label " Next Buf" :help "Switch to next buffer")
 
-    (tool-bar-local-item "icons/zoom-in" 'text-scale-increase 'zoomin map :label " Zoom In" :help "Zoom buffer (increase font size)")
-    (tool-bar-local-item "icons/zoom-out" 'text-scale-decrease 'zoomout map :label " Zoom Out" :help "Zoom buffer (decrease font size)")
-    (tool-bar-local-item "icons/exit" 'my/quit-tool-bar 'quit map :label " Quit" :help "Try to quit from special mode")
+    (tool-bar-local-item "icons/up-node" 'list-buffers 'list map
+			 :label " List Buf" :help "List current buffers")
+
+    (tool-bar-local-item "icons/home" 'my/switch-to-scratch 'home map
+			 :label " Home" :help "Switch to *scratch* buffer")
+
+    (tool-bar-local-item "icons/zoom-in" 'text-scale-increase 'zoomin map
+			 :label " Zoom In" :help "Zoom buffer (increase font size)")
+    (tool-bar-local-item "icons/zoom-out" 'text-scale-decrease 'zoomout map
+			 :label " Zoom Out" :help "Zoom buffer (decrease font size)")
+    (tool-bar-local-item "icons/exit" 'my/quit-tool-bar 'quit map
+			 :label " Quit" :help "Try to quit from special mode")
     map))
 
 (defun my/set-tool-bar ()
@@ -77,15 +107,6 @@
   (highlight-symbol-mode t)
   (indent-tabs-mode t)
   (aggressive-indent-mode t))
-
-(add-hook 'text-mode-hook #'my/buffer-enabled-text-modes)
-(add-hook 'prog-mode-hook #'my/buffer-enabled-prog-modes)
-
-(defun my/recreate-scratch nil
-  "Recreate a scratch buffer."
-  (interactive)
-  (switch-to-buffer (get-buffer-create "*scratch*"))
-  (lisp-interaction-mode))
 
 (defun my/switch-language ()
   "Print input info and switch Ispell language."
@@ -160,6 +181,19 @@
 (bind-key "C-x <right>" #'next-buffer)
 (bind-key "C-<right>" #'next-buffer)
 (bind-key "<mouse-9>" #'next-buffer)
+
+
+;; Global hooks
+;;
+(add-hook 'text-mode-hook #'my/buffer-enabled-text-modes)
+(add-hook 'prog-mode-hook #'my/buffer-enabled-prog-modes)
+
+(add-hook 'minibuffer-setup-hook #'(lambda () (highlight-symbol-mode -1)))
+(add-hook 'before-save-hook 'time-stamp)
+
+
+
+
 
 
 ;;; 

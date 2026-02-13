@@ -6,30 +6,6 @@
 ;;
 ;;; Code:
 
-(use-package dired
-  :custom
-  (dired-kill-when-opening-new-buffer t))
-
-(use-package tool-bar
-  :custom
-  (tool-bar-position 'top)
-  (tool-bar-style 'both-horiz)
-  :config
-  (tool-bar-mode t))
-
-(use-package help-mode
-  :custom
-  (help-clean-buttons t)
-  :hook
-  ((help-mode . (lambda () (tab-line-mode -1)))))
-
-(use-package tab-line
-  :custom
-  (tab-line-new-button-show nil)
-  (tab-line-tab-name-truncated-max 32)
-  :config
-  (global-tab-line-mode t))
-
 (use-package reverse-im
   :ensure t
   :config
