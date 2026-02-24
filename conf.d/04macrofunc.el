@@ -1,6 +1,6 @@
 ;;; 04macrofunc.el --- custom functions, marcoses and keybindings -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-01-08 18:46:57 azabiralov>
+;;; Time-stamp: <2026-02-24 16:59:10 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -75,7 +75,6 @@
 
 (add-hook 'after-change-major-mode-hook #'my/set-tool-bar)
 
-
 (defun my/keyboard-quit ()
   "Quit minibuffer if active, otherwise `keyboard-quit`."
   (interactive)
@@ -85,8 +84,6 @@
 	(with-selected-window (active-minibuffer-window)
 	  (abort-recursive-edit))
       (keyboard-quit))))
-
-(bind-key "C-g" #'my/keyboard-quit)
 
 (defun my/buffer-enabled-text-modes ()
   "List of buffer-local modes enabled by default for text modes."
@@ -138,6 +135,51 @@
      (progn (forward-visible-line 0) (point))
      (progn (forward-visible-line 1) (point)))))
 
+(defun my/copy-to-system-clipboard (beg end)
+  "Copy current mark or string to system clipboard from BEG to END."
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (list (line-beginning-position) (line-end-position))))
+  (let ((select-enable-clipboard t)
+        (coding-system-for-write 'utf-8))
+    (gui-select-text (buffer-substring-no-properties beg end)))
+  (message (if (use-region-p) "Mark copied to system clipboard" "String copied to system clipboard")))
+
+(defun my/paste-from-system-clipboard ()
+  "Paste element from system clipboard."
+  (interactive)
+  (let ((select-enable-clipboard t)
+        (coding-system-for-read 'utf-8))
+    ;; Remove mark before paste
+    (when (use-region-p)
+      (delete-region (region-beginning) (region-end)))
+    (insert (gui-get-selection 'CLIPBOARD 'UTF8_STRING))))
+
+
+(defun my/smart-m-w (beg end)
+  "Copy mark or whole line to `kill-ring' from BEG to END."
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (list (line-beginning-position)
+		       (min (point-max) (1+ (line-end-position))))))
+  (kill-ring-save beg end)
+  (unless (use-region-p) (message "Whole line was copied")))
+
+
+(defun my/smart-c-w (beg end)
+  "Kill and move mark or whole line to `kill-ring' from BEG to END."
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (list (line-beginning-position)
+		       (min (point-max) (1+ (line-end-position))))))
+  (kill-region beg end)
+  (unless (use-region-p) (message "Whole line was killed")))
+
+
+(bind-key "M-w" #'my/smart-m-w)
+(bind-key "C-w" #'my/smart-c-w)
+
+(bind-key "C-g" #'my/keyboard-quit)
 (bind-key "C-k" #'kill-whole-line)
 
 (bind-key "H-k" #'kill-buffer-and-window)
@@ -160,7 +202,7 @@
 (bind-key "<f4>" #'my/delete-whole-line)
 (bind-key "<f5>" #'indent-tabs-mode)
 (bind-key "<f6>" #'aggressive-indent-mode)
-(bind-key "<f7>" #'vc-dir)
+(bind-key "<f7>" #'magit-status)
 
 ;; (bind-key "<f8>" ')
 ;; (bind-key "<f9>" ')
@@ -182,6 +224,9 @@
 (bind-key "C-<right>" #'next-buffer)
 (bind-key "<mouse-9>" #'next-buffer)
 
+(bind-key "<C-insert>" #'my/copy-to-system-clipboard)
+(bind-key "<S-insert>" #'my/paste-from-system-clipboard)
+
 
 ;; Global hooks
 ;;
@@ -190,10 +235,6 @@
 
 (add-hook 'minibuffer-setup-hook #'(lambda () (highlight-symbol-mode -1)))
 (add-hook 'before-save-hook 'time-stamp)
-
-
-
-
 
 
 ;;; 

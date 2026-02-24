@@ -1,20 +1,25 @@
 ;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-01-08 19:36:14 azabiralov>
+;;; Time-stamp: <2026-02-24 16:41:04 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
 ;;; Code:
 ;;
 
+(prefer-coding-system 'utf-8)
 (set-language-environment 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
 
 (setq default-input-method 'russian-computer
       auth-sources '("~/.netrc")
       default-justification 'full
       frame-title-format "GNU Emacs"
       initial-scratch-message nil
-      kill-ring-max 5
+      kill-ring-max 16
       kill-whole-line t
       make-backup-files nil
       max-mini-window-height 0.5
@@ -30,7 +35,11 @@
       help-window-select nil
       use-system-tooltips t
       use-dialog-box nil
-      use-short-answers t)
+      use-short-answers t
+      select-enable-clipboard nil
+      select-enable-primary nil
+      save-interprogram-paste-before-kill nil
+      )
 
 
 (dolist (my-init-frame-options '((fullscreen . maximized)))
@@ -64,18 +73,18 @@
 (use-package winner
   :ensure nil
   :custom
-  (winner-ring-size 20)
+  (winner-ring-size 16)
   :config
   (winner-mode t))
 
 (use-package menu-bar
   :ensure nil
   :custom
-  (yank-menu-length 5)
-  (yank-menu-max-items)
+  (yank-menu-length 16)
+  (yank-menu-max-items 16)
   :config
-  (setq buffers-menu-max-size 20
-	buffers-menu-buffer-name-length 20
+  (setq buffers-menu-max-size 16
+	buffers-menu-buffer-name-length 16
 	buffers-menu-show-status t)
   (menu-bar-mode t))
 

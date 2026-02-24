@@ -39,8 +39,7 @@
 		       multiple-cursors nasm-mode nginx-mode orderless
 		       rainbow-delimiters reverse-im scratch smartparens
 		       sql-clickhouse super-save terraform-mode toml-mode
-		       transpose-frame treemacs vertico vterm-toggle ws-butler
-		       yasnippet))
+		       transpose-frame treemacs vertico vterm-toggle yasnippet))
  '(warning-suppress-log-types '((comp) (comp)))
  '(warning-suppress-types '((comp))))
 
