@@ -1,6 +1,6 @@
 ;;; 04macrofunc.el --- custom functions, marcoses and keybindings -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-02-24 16:59:10 azabiralov>
+;;; Time-stamp: <2026-02-25 14:55:22 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -8,6 +8,26 @@
 
 
 (add-to-list 'image-load-path "~/emacs/etc/images/")
+
+
+(defun my/context-menu-split-windows (menu click)
+  "Add custom items to context menu."
+
+  (define-key menu [delete-window]
+	      '(menu-item "Close window" delete-window
+			  :help "Close current window pane"))
+
+  (define-key menu [split-below]
+	      '(menu-item "Split below" (lambda () (interactive) (split-window-below))
+			  :help "Split window below"))
+
+  (define-key menu [split-right]
+	      '(menu-item "Split right" (lambda () (interactive) (split-window-right))
+			  :help "Split window right"))
+  
+  menu)
+
+(add-hook 'context-menu-functions #'my/context-menu-split-windows)
 
 
 (defun my/switch-to-scratch ()

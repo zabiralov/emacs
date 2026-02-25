@@ -1,6 +1,6 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-01-09 16:45:59 azabiralov>
+;;; Time-stamp: <2026-02-25 13:58:48 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -175,6 +175,7 @@
 
 (use-package treemacs
   :ensure t
+  :demand t
   :custom
   (treemacs-collapse-dirs 0)
   (treemacs-deferred-git-apply-delay 0.5)
@@ -193,7 +194,7 @@
   (treemacs-no-png-images t)
   (treemacs-no-delete-other-windows t)
   (treemacs-project-follow-cleanup nil)
-  (treemacs-persist-file (expand-file-name "var/treemacs/persist" user-emacs-directory))
+  (treemacs-persist-file (expand-file-name "var/treemacs.db" user-emacs-directory))
   (treemacs-position 'left)
   (treemacs-read-string-input 'from-child-frame)
   (treemacs-litter-directories nil)
@@ -212,6 +213,7 @@
   (treemacs-width-increment 1)
   (treemacs-width-is-initially-locked t)
   (treemacs-workspace-switch-cleanup nil)
+  (treemacs-no-select-when-already-in-treemacs t)
   :bind
   ("H-y" . treemacs)
   :custom-face
@@ -244,8 +246,18 @@
   (treemacs-marked-file-face ((t ( :font "Cantarell 11"))))
   (treemacs-git-commit-diff-face ((t ( :font "Cantarell 11"))))
   (treemacs-async-loading-face ((t ( :font "Cantarell 11"))))
-  :hook
-  ((after-init . treemacs)))
+  :config
+  (treemacs)
+  (run-with-timer 0.1 nil
+                  (lambda ()
+                    (let ((scratch-window (get-buffer-window "*scratch*")))
+                      (if scratch-window
+                          (select-window scratch-window)
+                        (other-window 1))))))
+
+
+;; :hook
+;; ((after-init . treemacs-display-current-project-exclusively)))
 
 (use-package vterm
   :ensure t
@@ -371,7 +383,37 @@
   :ensure t
   :defer t
   :bind
-  ("<f9>" . scratch))
+  ("<f10>" . scratch))
+
+(use-package savehist
+  :ensure nil
+  :defer t
+  :custom
+  (savehist-additional-variables '(kill-ring search-ring regexp-search-ring last-kbd-macro))
+  (savehist-file (expand-file-name "var/savehist.db" user-emacs-directory))
+  (savehist-autosave-interval 10)
+  :config
+  (savehist-mode t))
+
+(use-package recentf
+  :ensure nil
+  :defer t
+  :custom
+  (recentf-max-saved-items 16)
+  (recentf-max-menu-items 16)
+  (recentf-exclude '("/ssh:"))
+  (recentf-save-file (expand-file-name "var/recentf.db" user-emacs-directory))
+  :config
+  (recentf-mode t))
+
+(use-package tramp
+  :ensure nil
+  :defer t
+  :custom
+  (tramp-persistency-file-name (expand-file-name "var/tramp.db" user-emacs-directory)))
+
+
+
 
 
 ;;; 02modes.el ends here

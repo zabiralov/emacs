@@ -1,6 +1,6 @@
 ;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-02-24 16:41:04 azabiralov>
+;;; Time-stamp: <2026-02-25 14:55:43 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -13,6 +13,11 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+;; Advice Dog
+;; 
+(advice-add 'split-window-below :after (lambda (&rest _args) (other-window 1)))
+(advice-add 'split-window-right :after (lambda (&rest _args) (other-window 1)))
+
 
 (setq default-input-method 'russian-computer
       auth-sources '("~/.netrc")
@@ -23,8 +28,6 @@
       kill-whole-line t
       make-backup-files nil
       max-mini-window-height 0.5
-      mouse-autoselect-window nil
-      mouse-yank-at-point nil
       ring-bell-function 'ignore
       split-height-threshold nil
       split-width-threshold nil
@@ -39,7 +42,9 @@
       select-enable-clipboard nil
       select-enable-primary nil
       save-interprogram-paste-before-kill nil
-      )
+      history-length 128
+      history-delete-duplicates t
+      auto-save-list-file-prefix (expand-file-name "var/auto-save/save-" user-emacs-directory))
 
 
 (dolist (my-init-frame-options '((fullscreen . maximized)))
@@ -59,7 +64,6 @@
 (delete-selection-mode t)
 (goto-address-mode t)
 (pixel-scroll-precision-mode t)
-(context-menu-mode t)
 
 ;; Configuration for built-in packages
 ;; 
@@ -117,6 +121,16 @@
   :config
   (global-tab-line-mode -1))
 
+
+(use-package mouse
+  :ensure nil
+  :demand t
+  :custom
+  (mouse-autoselect-window nil)
+  (mouse-yank-at-point nil)
+  (mouse-buffer-menu-maxlen 16)
+  :config
+  (context-menu-mode t))
 
 ;; Disable F10 completelly for menu bar-mode
 (global-unset-key (kbd "<f10>"))

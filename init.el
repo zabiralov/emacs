@@ -1,6 +1,6 @@
 ;;; init.el -- emacs main configuration file -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-01-08 19:15:19 azabiralov>
+;;; Time-stamp: <2026-02-25 13:51:52 azabiralov>
 ;;;
 ;;; Author: Alexander E. Zabiralov
 ;;
@@ -14,6 +14,13 @@
 ;;
 ;;; Code:
 
+;; Store ELN cache in emacs.d/var
+;; 
+(when (boundp 'native-comp-eln-load-path)
+  (let ((eln-dir (expand-file-name "var/eln-cache/" user-emacs-directory)))
+    (unless (file-exists-p eln-dir)
+      (make-directory eln-dir t))
+    (setq native-comp-eln-load-path (list eln-dir))))
 
 
 ;; ELPA
