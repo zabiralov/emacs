@@ -1,6 +1,6 @@
 ;;; 04macrofunc.el --- custom functions, marcoses and keybindings -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-02-25 14:55:22 azabiralov>
+;;; Time-stamp: <2026-02-26 12:57:05 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -10,19 +10,35 @@
 (add-to-list 'image-load-path "~/emacs/etc/images/")
 
 
+(defun my/mouse-split-and-follow-right ()
+  "Split window vertically with respect mouse event."
+  (interactive "e")
+  (let ((window (split-window-right)))
+    (select-window window)
+    (set-mouse-position (selected-frame) (nth 1 (mouse-position)) (nth 2 (mouse-position)))))
+
+
+(defun my/mouse-split-and-follow-below ()
+  "Split window vertically with respect mouse event."
+  (interactive "e")
+  (let ((window (split-window-below)))
+    (select-window window)
+    (set-mouse-position (selected-frame) (nth 1 (mouse-position)) (nth 2 (mouse-position)))))
+
+
 (defun my/context-menu-split-windows (menu click)
-  "Add custom items to context menu."
+  "Add custom items to context MENU."
 
   (define-key menu [delete-window]
 	      '(menu-item "Close window" delete-window
 			  :help "Close current window pane"))
 
   (define-key menu [split-below]
-	      '(menu-item "Split below" (lambda () (interactive) (split-window-below))
+	      '(menu-item "Split below" (lambda () (interactive) (my/mouse-split-and-follow-below))
 			  :help "Split window below"))
 
   (define-key menu [split-right]
-	      '(menu-item "Split right" (lambda () (interactive) (split-window-right))
+	      '(menu-item "Split right" (lambda () (interactive) (my/mouse-split-and-follow-right))
 			  :help "Split window right"))
   
   menu)
@@ -195,6 +211,21 @@
   (kill-region beg end)
   (unless (use-region-p) (message "Whole line was killed")))
 
+
+(defun my/split-and-follow-right ()
+  "Split window vertically and set focus to the new window."
+  (interactive)
+  (select-window (split-window-right)))
+
+
+(defun my/split-and-follow-below ()
+  "Split window horizontally and set focus to the new window."
+  (interactive)
+  (select-window (split-window-below)))
+
+
+(bind-key "C-x 2" #'my/split-and-follow-below)
+(bind-key "C-x 3" #'my/split-and-follow-right)
 
 (bind-key "M-w" #'my/smart-m-w)
 (bind-key "C-w" #'my/smart-c-w)

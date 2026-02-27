@@ -1,6 +1,6 @@
 ;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-02-25 14:55:43 azabiralov>
+;;; Time-stamp: <2026-02-26 12:43:18 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -15,8 +15,8 @@
 
 ;; Advice Dog
 ;; 
-(advice-add 'split-window-below :after (lambda (&rest _args) (other-window 1)))
-(advice-add 'split-window-right :after (lambda (&rest _args) (other-window 1)))
+;; (advice-add 'split-window-below :after (lambda (&rest _args) (other-window 1)))
+;; (advice-add 'split-window-right :after (lambda (&rest _args) (other-window 1)))
 
 
 (setq default-input-method 'russian-computer
