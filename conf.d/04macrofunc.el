@@ -1,6 +1,6 @@
 ;;; 04macrofunc.el --- custom functions, marcoses and keybindings -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-02-26 12:57:05 azabiralov>
+;;; Time-stamp: <2026-03-05 13:09:56 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -190,6 +190,17 @@
     (when (use-region-p)
       (delete-region (region-beginning) (region-end)))
     (insert (gui-get-selection 'CLIPBOARD 'UTF8_STRING))))
+
+(defun my/vterm-paste-from-clipboard ()
+  "Paste element from system clipboard to vterm."
+  (interactive)
+  (let ((clip-text (gui-get-selection 'CLIPBOARD)))
+    (if clip-text
+        (vterm-send-string clip-text)
+      (message "Clipboard is empty!"))))
+
+(with-eval-after-load 'vterm
+  (define-key vterm-mode-map (kbd "<S-insert>") 'my/vterm-paste-from-clipboard))
 
 
 (defun my/smart-m-w (beg end)
