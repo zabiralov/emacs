@@ -1,6 +1,6 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-02-25 13:58:48 azabiralov>
+;;; Time-stamp: <2026-03-10 20:00:35 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -412,7 +412,10 @@
   :custom
   (tramp-persistency-file-name (expand-file-name "var/tramp.db" user-emacs-directory)))
 
-
+(use-package burly
+  :ensure t
+  :custom
+  (burly-bookmark-prefix ""))
 
 
 

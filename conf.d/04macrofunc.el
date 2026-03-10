@@ -1,6 +1,6 @@
 ;;; 04macrofunc.el --- custom functions, marcoses and keybindings -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-05 13:09:56 azabiralov>
+;;; Time-stamp: <2026-03-10 19:59:09 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -298,6 +298,13 @@
 (add-hook 'minibuffer-setup-hook #'(lambda () (highlight-symbol-mode -1)))
 (add-hook 'before-save-hook 'time-stamp)
 
+(add-hook 'window-setup-hook
+          (lambda () (bookmark-maybe-load-default-file)
+            (when (assoc "latest" bookmark-alist)
+              (burly-open-bookmark "latest"))))
+
+(add-hook 'kill-emacs-hook
+          (lambda () (burly-bookmark-windows "latest")))
 
 ;;; 
 ;;; 04macrofunc.el ends here

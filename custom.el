@@ -30,7 +30,7 @@
      "/home/azabiralov/org/todo/front-door.org"
      "/home/azabiralov/org/todo/katio.org"))
  '(package-selected-packages
-   '(aggressive-indent buffer-flip buffer-move bufferfile company
+   '(aggressive-indent buffer-flip buffer-move bufferfile burly company
 		       current-window-only dedicated diminish
 		       docker-compose-mode dockerfile-mode doom-themes
 		       flycheck-mmark geiser-guile geiser-racket git-gutter
