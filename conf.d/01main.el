@@ -1,6 +1,6 @@
 ;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-02-26 12:43:18 azabiralov>
+;;; Time-stamp: <2026-03-10 19:30:52 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -44,7 +44,7 @@
       save-interprogram-paste-before-kill nil
       history-length 128
       history-delete-duplicates t
-      auto-save-list-file-prefix (expand-file-name "var/auto-save/save-" user-emacs-directory))
+      auto-save-list-file-prefix "/home/azabiralov/emacs/var/auto-save/save-")
 
 
 (dolist (my-init-frame-options '((fullscreen . maximized)))
@@ -55,18 +55,39 @@
   (add-to-list 'default-frame-alist my-def-frame-options))
 
 
-;; Enable or disable basic minor modes on startup
+;; Disable some enabled by default mode
 ;;
 (column-number-mode -1)
-(desktop-save-mode -1)
 (line-number-mode -1)
-(blink-cursor-mode t)
-(delete-selection-mode t)
+(desktop-save-mode -1)
+
+;; Enable modes which have not configuration opntions
+;; 
 (goto-address-mode t)
-(pixel-scroll-precision-mode t)
 
 ;; Configuration for built-in packages
-;; 
+;;
+(use-package pixel-scroll
+  :ensure nil
+  :config
+  (pixel-scroll-precision-mode t))
+
+(use-package frame
+  :ensure nil
+  :custom
+  (blink-cursor-delay 0.5)
+  (blink-cursor-interval 0.5)
+  (blink-cursor-blinks 0)
+  :config
+  (blink-cursor-mode t))
+
+(use-package delsel
+  :ensure nil
+  :custom
+  (delete-selection-temporary-region nil)
+  :config
+  (delete-selection-mode t))
+
 (use-package scroll-bar
   :ensure nil
   :custom
@@ -120,7 +141,6 @@
   (tab-line-exclude-modes '(help-mode magit-mode vterm-mode))
   :config
   (global-tab-line-mode -1))
-
 
 (use-package mouse
   :ensure nil
