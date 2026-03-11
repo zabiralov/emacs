@@ -1,6 +1,6 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-11 15:16:28 azabiralov>
+;;; Time-stamp: <2026-03-11 17:19:11 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -372,6 +372,11 @@
   :custom
   (burly-bookmark-prefix ""))
 
+(use-package pinentry
+  :ensure t
+  :config
+  (setenv "SSH_AUTH_SOCK" "/tmp/ssh-agent-azabiralov.socket")
+  (pinentry-start))
 
 
 ;;; 02modes.el ends here
