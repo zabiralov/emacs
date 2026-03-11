@@ -1,6 +1,6 @@
 ;;; init.el -- emacs main configuration file -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-02-25 13:51:52 azabiralov>
+;;; Time-stamp: <2026-03-11 14:10:22 azabiralov>
 ;;;
 ;;; Author: Alexander E. Zabiralov
 ;;
@@ -14,10 +14,20 @@
 ;;
 ;;; Code:
 
+
+;; Native complilation settings
+;;
+(setq native-comp-async-report-warnings-errors 'silent
+      native-comp-speed 2
+      native-comp-debug 0
+      native-comp-verbose 0
+      native-comp-async-jobs-number 8)
+
+
 ;; Store ELN cache in emacs.d/var
 ;; 
 (when (boundp 'native-comp-eln-load-path)
-  (let ((eln-dir (expand-file-name "var/eln-cache/" user-emacs-directory)))
+  (let ((eln-dir "/home/azabiralov/var/eln-cache/"))
     (unless (file-exists-p eln-dir)
       (make-directory eln-dir t))
     (setq native-comp-eln-load-path (list eln-dir))))
@@ -25,13 +35,13 @@
 
 ;; ELPA
 ;;
-(let ((default-directory  "~/emacs/elpa/"))
+(let ((default-directory  "/home/azabiralov/emacs/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
 
 
 ;; Additional lisp code, not in packages
 ;;
-(add-to-list 'load-path "~/emacs/site-lisp/")
+(add-to-list 'load-path "/home/azabiralov/emacs/site-lisp/")
 
 
 
@@ -46,7 +56,7 @@
 
 ;; Custom file
 ;;
-(setq custom-file "~/emacs/custom.el")
+(setq custom-file "/home/azabiralov/emacs/custom.el")
 (load custom-file)
 
 
@@ -59,7 +69,7 @@
 		   (load-file (concat (file-name-as-directory dir) f)))))
     (mapc load-it (directory-files dir nil "\\.el$"))))
 
-(my/load-el-from-directory "~/emacs/conf.d")
+(my/load-el-from-directory "/home/azabiralov/emacs/conf.d")
 
 ;;
 ;;; init.el ends here

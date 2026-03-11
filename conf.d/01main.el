@@ -1,6 +1,6 @@
 ;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-10 19:30:52 azabiralov>
+;;; Time-stamp: <2026-03-11 16:39:29 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -18,12 +18,11 @@
 ;; (advice-add 'split-window-below :after (lambda (&rest _args) (other-window 1)))
 ;; (advice-add 'split-window-right :after (lambda (&rest _args) (other-window 1)))
 
-
 (setq default-input-method 'russian-computer
       auth-sources '("~/.netrc")
       default-justification 'full
       frame-title-format "GNU Emacs"
-      initial-scratch-message nil
+      initial-scratch-message ";; "
       kill-ring-max 16
       kill-whole-line t
       make-backup-files nil
@@ -42,6 +41,7 @@
       select-enable-clipboard nil
       select-enable-primary nil
       save-interprogram-paste-before-kill nil
+      message-log-max 1024
       history-length 128
       history-delete-duplicates t
       auto-save-list-file-prefix "/home/azabiralov/emacs/var/auto-save/save-")
@@ -151,6 +151,55 @@
   (mouse-buffer-menu-maxlen 16)
   :config
   (context-menu-mode t))
+
+(use-package org
+  :ensure nil
+  :custom
+  (org-table-default-size "4x4")
+  (org-table-header-line-p t)
+  (org-table-automatic-realign t)
+  (org-table-auto-blank-field t))
+
+(use-package magit
+  :ensure t
+  :custom
+  (magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1)
+  (magit-save-repository-buffers 'dontask)
+  (magit-diff-refine-hunk 'all)
+  (magit-commit-show-diff nil)
+  :bind
+  ("C-x g" . magit-status)
+  :hook
+  ((magit . (lambda () (tab-line-mode -1)))))
+
+(use-package savehist
+  :ensure nil
+  :defer t
+  :custom
+  (savehist-length 100)
+  (savehist-additional-variables '(kill-ring search-ring regexp-search-ring last-kbd-macro))
+  (savehist-file "/home/azabiralov/emacs/var/savehist.db")
+  (savehist-autosave-interval 10)
+  :config
+  (savehist-mode t))
+
+(use-package recentf
+  :ensure nil
+  :defer t
+  :custom
+  (recentf-max-saved-items 16)
+  (recentf-max-menu-items 16)
+  (recentf-exclude '("/ssh:"))
+  (recentf-save-file "/home/azabiralov/emacs/var/recentf.db")
+  :config
+  (recentf-mode t))
+
+(use-package tramp
+  :ensure nil
+  :defer t
+  :custom
+  (tramp-persistency-file-name "/home/azabiralov/emacs/var/tramp.db"))
+
 
 ;; Disable F10 completelly for menu bar-mode
 (global-unset-key (kbd "<f10>"))

@@ -1,6 +1,6 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-10 20:00:35 azabiralov>
+;;; Time-stamp: <2026-03-11 15:16:28 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -170,8 +170,8 @@
 (use-package transpose-frame
   :ensure t
   :bind
-  ("H-<up>" . rotate-frame)
-  ("H-<down>" . transpose-frame))
+  ("H-r" . rotate-frame)
+  ("H-t" . transpose-frame))
 
 (use-package treemacs
   :ensure t
@@ -194,7 +194,7 @@
   (treemacs-no-png-images t)
   (treemacs-no-delete-other-windows t)
   (treemacs-project-follow-cleanup nil)
-  (treemacs-persist-file (expand-file-name "var/treemacs.db" user-emacs-directory))
+  (treemacs-persist-file "/home/azabiralov/emacs/var/treemacs.db")
   (treemacs-position 'left)
   (treemacs-read-string-input 'from-child-frame)
   (treemacs-litter-directories nil)
@@ -255,10 +255,6 @@
                           (select-window scratch-window)
                         (other-window 1))))))
 
-
-;; :hook
-;; ((after-init . treemacs-display-current-project-exclusively)))
-
 (use-package vterm
   :ensure t
   :custom
@@ -268,6 +264,12 @@
   (vterm-kill-buffer-on-exit t)
   :config
   (add-to-list 'vterm-keymap-exceptions "<f9>")
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (when (derived-mode-p 'vterm-mode)
+	(let ((proc (get-buffer-process buf)))
+          (when proc
+            (set-process-query-on-exit-flag proc nil))))))
   :hook
   ((vterm-mode . dedicated-mode)
    (vterm-mode . (lambda () (tab-line-mode -1)))))
@@ -283,7 +285,6 @@
     (define-key vterm-mode-map (kbd "<f9>") #'vterm-toggle))
   :bind
   ("<f9>" . vterm-toggle)
-  ("H-t" . vterm-toggle)
   :hook
   ((vterm-toggle-show . goto-address-mode)))
 
@@ -293,7 +294,7 @@
   :custom
   (bufferfile-use-vc t)
   :bind
-  ("H-r" . bufferfile-rename)
+  ("H-m" . bufferfile-rename)
   ("H-<delete>" . bufferfile-delete))
 
 (use-package buffer-flip
@@ -319,26 +320,6 @@
    ("H-<left>" . buf-move-left)
    ("H-<right>" . buf-move-right)))
 
-(use-package org
-  :ensure nil
-  :custom
-  (org-table-default-size "4x4")
-  (org-table-header-line-p t)
-  (org-table-automatic-realign t)
-  (org-table-auto-blank-field t))
-
-(use-package magit
-  :ensure nil
-  :custom
-  (magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1)
-  (magit-save-repository-buffers 'dontask)
-  (magit-diff-refine-hunk 'all)
-  (magit-commit-show-diff nil)
-  :bind
-  ("C-x g" . magit-status)
-  :hook
-  ((magit . (lambda () (tab-line-mode -1)))))
-
 (use-package rainbow-delimiters
   :ensure t)
 
@@ -360,6 +341,7 @@
 (use-package vertico
   :ensure t
   :custom
+  (vertico-cycle t)
   (vertico-count 8)
   (vertico-preselect 'first)
   (vertico-sort-function 'vertico-sort-history-length-alpha)
@@ -384,33 +366,6 @@
   :defer t
   :bind
   ("<f10>" . scratch))
-
-(use-package savehist
-  :ensure nil
-  :defer t
-  :custom
-  (savehist-additional-variables '(kill-ring search-ring regexp-search-ring last-kbd-macro))
-  (savehist-file (expand-file-name "var/savehist.db" user-emacs-directory))
-  (savehist-autosave-interval 10)
-  :config
-  (savehist-mode t))
-
-(use-package recentf
-  :ensure nil
-  :defer t
-  :custom
-  (recentf-max-saved-items 16)
-  (recentf-max-menu-items 16)
-  (recentf-exclude '("/ssh:"))
-  (recentf-save-file (expand-file-name "var/recentf.db" user-emacs-directory))
-  :config
-  (recentf-mode t))
-
-(use-package tramp
-  :ensure nil
-  :defer t
-  :custom
-  (tramp-persistency-file-name (expand-file-name "var/tramp.db" user-emacs-directory)))
 
 (use-package burly
   :ensure t
