@@ -1,6 +1,6 @@
 ;;; 04macrofunc.el --- custom functions, marcoses and keybindings -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-10 19:59:09 azabiralov>
+;;; Time-stamp: <2026-03-12 15:33:43 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -127,7 +127,7 @@
   (auto-insert-mode t)
   (goto-address-mode t)
   (rainbow-delimiters-mode t)
-  (prettify-symbols-mode t)
+  (prettify-symbols-mode -1)
   (highlight-symbol-mode t))
 
 (defun my/buffer-enabled-prog-modes ()
@@ -136,9 +136,9 @@
   (auto-insert-mode t)
   (goto-address-mode t)
   (rainbow-delimiters-mode t)
-  (prettify-symbols-mode t)
   (highlight-symbol-mode t)
   (indent-tabs-mode t)
+  (prettify-symbols-mode -1)
   (aggressive-indent-mode t))
 
 (defun my/switch-language ()
@@ -261,14 +261,15 @@
 (bind-key "<f2>" #'save-buffer)
 (bind-key "<f3>" #'replace-string)
 (bind-key "M-<f3>" #'my/replace-under-point)
-(bind-key "<f4>" #'my/delete-whole-line)
+;; (bind-key "<f4>" #')
+
 (bind-key "<f5>" #'indent-tabs-mode)
 (bind-key "<f6>" #'aggressive-indent-mode)
-(bind-key "<f7>" #'magit-status)
 
-;; (bind-key "<f8>" ')
-;; (bind-key "<f9>" ')
-;; (bind-key "<f10>" ')
+;; (bind-key "<f7>" #')
+(bind-key "<f8>" #'my/delete-whole-line)
+;; (bind-key "<f9>" ')  ; vterm
+;; (bind-key "<f10>" ') ; scratch
 ;; (bind-key "<f11>" ') ; Toggle fullscreen
 
 (bind-key "<f12>" #'kmacro-end-or-call-macro)

@@ -1,12 +1,14 @@
 ;;; 06server.el --- settings for Emacs client and server -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2025-12-30 11:02:29 azabiralov>
+;;; Time-stamp: <2026-03-12 15:11:39 azabiralov>
 ;;;
 ;;; Commentary:
 
 ;;; Code:
 
-(server-start)
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
 (if (daemonp)
     (add-hook 'after-make-frame-functions

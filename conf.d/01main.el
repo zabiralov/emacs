@@ -1,6 +1,6 @@
 ;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-11 16:39:29 azabiralov>
+;;; Time-stamp: <2026-03-12 14:00:16 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -18,33 +18,38 @@
 ;; (advice-add 'split-window-below :after (lambda (&rest _args) (other-window 1)))
 ;; (advice-add 'split-window-right :after (lambda (&rest _args) (other-window 1)))
 
-(setq default-input-method 'russian-computer
-      auth-sources '("~/.netrc")
+(setq auth-sources '("~/.netrc")
+      auto-save-list-file-prefix "/home/azabiralov/emacs/var/auto-save/save-"
+      default-input-method 'russian-computer
       default-justification 'full
       frame-title-format "GNU Emacs"
-      initial-scratch-message ";; "
+      help-window-select nil
+      history-delete-duplicates t
+      history-length 128
+      inhibit-splash-screen t
+      initial-scratch-message ";; Scratch buffer -*- lexical-binding: t -*-"
       kill-ring-max 16
       kill-whole-line t
       make-backup-files nil
       max-mini-window-height 0.5
+      message-log-max 1024
+      mouse-wheel-progressive-speed nil
       ring-bell-function 'ignore
-      split-height-threshold nil
-      split-width-threshold nil
-      use-file-dialog nil
-      visible-bell nil
-      x-stretch-cursor t
-      inhibit-splash-screen t
-      help-window-select nil
-      use-system-tooltips t
-      use-dialog-box nil
-      use-short-answers t
+      save-interprogram-paste-before-kill nil
+      scroll-conservatively 10000
+      scroll-margin 2
+      scroll-preserve-screen-position t
+      scroll-step 1
       select-enable-clipboard nil
       select-enable-primary nil
-      save-interprogram-paste-before-kill nil
-      message-log-max 1024
-      history-length 128
-      history-delete-duplicates t
-      auto-save-list-file-prefix "/home/azabiralov/emacs/var/auto-save/save-")
+      split-height-threshold nil
+      split-width-threshold nil
+      use-dialog-box nil
+      use-file-dialog nil
+      use-short-answers t
+      use-system-tooltips t
+      visible-bell nil
+      x-stretch-cursor t)
 
 
 (dolist (my-init-frame-options '((fullscreen . maximized)))
@@ -60,10 +65,9 @@
 (column-number-mode -1)
 (line-number-mode -1)
 (desktop-save-mode -1)
+(global-prettify-symbols-mode -1)
+(pixel-scroll-precision-mode -1)
 
-;; Enable modes which have not configuration opntions
-;; 
-(goto-address-mode t)
 
 ;; Configuration for built-in packages
 ;;
@@ -160,18 +164,6 @@
   (org-table-automatic-realign t)
   (org-table-auto-blank-field t))
 
-(use-package magit
-  :ensure t
-  :custom
-  (magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1)
-  (magit-save-repository-buffers 'dontask)
-  (magit-diff-refine-hunk 'all)
-  (magit-commit-show-diff nil)
-  :bind
-  ("C-x g" . magit-status)
-  :hook
-  ((magit . (lambda () (tab-line-mode -1)))))
-
 (use-package savehist
   :ensure nil
   :defer t
@@ -199,6 +191,16 @@
   :defer t
   :custom
   (tramp-persistency-file-name "/home/azabiralov/emacs/var/tramp.db"))
+
+(use-package elec-pair
+  :ensure nil
+  :custom
+  (electric-pair-preserve-balance t)
+  (electric-pair-delete-adjacent-pairs t)
+  (electric-pair-open-newline-between-pairs t)
+  (electric-pair-skip-whitespace t)
+  :config
+  (electric-pair-mode t))
 
 
 ;; Disable F10 completelly for menu bar-mode

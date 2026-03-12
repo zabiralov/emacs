@@ -1,6 +1,6 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-11 17:19:11 azabiralov>
+;;; Time-stamp: <2026-03-12 15:47:10 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -39,17 +39,6 @@
   :custom
   (aggressive-indent-comments-too t)
   (aggressive-indent-sit-for-time 0.01))
-
-(use-package smartparens
-  :ensure t
-  :diminish
-  :custom
-  (sp-show-pair-delay 0.1)
-  (sp-undo-pairs-separately t)
-  (sp-autoinsert-pair t)
-  (sp-autodelete-pair nil)
-  :config
-  (smartparens-global-mode t))
 
 (use-package git-gutter
   :ensure t
@@ -248,6 +237,7 @@
   (treemacs-async-loading-face ((t ( :font "Cantarell 11"))))
   :config
   (treemacs)
+  (treemacs-follow-mode t)
   (run-with-timer 0.1 nil
                   (lambda ()
                     (let ((scratch-window (get-buffer-window "*scratch*")))
@@ -377,6 +367,31 @@
   :config
   (setenv "SSH_AUTH_SOCK" "/tmp/ssh-agent-azabiralov.socket")
   (pinentry-start))
+
+(use-package ace-window
+  :ensure t
+  :custom
+  (aw-keys '(?q ?w ?e ?r ?t ?a ?s ?d ?f))
+  (aw-scope 'frame)
+  (aw-minibuffer-flag nil)
+  (aw-ignore-current t)
+  (aw-background nil)
+  (aw-display-mode-overlay t)
+  (aw-char-position 'left)
+  :bind
+  ("C-x o" . ace-window))
+
+(use-package magit
+  :ensure t
+  :custom
+  (magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1)
+  (magit-save-repository-buffers 'dontask)
+  (magit-diff-refine-hunk 'all)
+  (magit-commit-show-diff nil)
+  :bind
+  ("C-x g" . magit-status)
+  :hook
+  ((magit . (lambda () (tab-line-mode -1)))))
 
 
 ;;; 02modes.el ends here

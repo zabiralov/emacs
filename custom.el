@@ -37,9 +37,9 @@
 		       go-mode grugru highlight-symbol jinja2-mode json-mode
 		       lsp-mode lsp-treemacs lsp-ui magit marginalia move-dup
 		       multiple-cursors nasm-mode nginx-mode orderless pinentry
-		       rainbow-delimiters reverse-im scratch smartparens
-		       sql-clickhouse super-save terraform-mode toml-mode
-		       transpose-frame treemacs vertico vterm-toggle yasnippet))
+		       rainbow-delimiters reverse-im scratch sql-clickhouse
+		       super-save terraform-mode toml-mode transpose-frame
+		       treemacs vertico vterm-toggle yasnippet))
  '(warning-suppress-log-types '((comp) (comp)))
  '(warning-suppress-types '((comp))))
 
