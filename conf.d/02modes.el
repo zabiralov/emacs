@@ -1,6 +1,6 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-12 15:47:10 azabiralov>
+;;; Time-stamp: <2026-03-13 13:56:27 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -371,15 +371,20 @@
 (use-package ace-window
   :ensure t
   :custom
-  (aw-keys '(?q ?w ?e ?r ?t ?a ?s ?d ?f))
+  (aw-keys '(?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9))
   (aw-scope 'frame)
   (aw-minibuffer-flag nil)
   (aw-ignore-current t)
-  (aw-background nil)
+  (aw-background t)
   (aw-display-mode-overlay t)
   (aw-char-position 'left)
+  (aw-leading-char-style 'char)
+  (aw-ignored-buffers (delete 'treemacs-mode aw-ignored-buffers))
+  (aw-swap-invert nil)
+  :custom-face
+  (aw-leading-char-face ((t (:height 1.25 :ascent 'center))))
   :bind
-  ("C-x o" . ace-window))
+  ("<f1>" . ace-window))
 
 (use-package magit
   :ensure t

@@ -1,6 +1,6 @@
 ;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-12 14:00:16 azabiralov>
+;;; Time-stamp: <2026-03-13 14:50:18 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -226,6 +226,11 @@
                (display-buffer-same-window)
                (inhibit-same-window . nil)))
 
-
+(setq display-buffer-alist
+      (cons '("\\*vterm"
+	      (display-buffer-reuse-window display-buffer-at-bottom)
+	      (reusable-frames . visible)
+	      (window-height . 0.3))
+	    display-buffer-alist))
 
 ;;; 01main.el ends here

@@ -1,6 +1,6 @@
 ;;; 04macrofunc.el --- custom functions, marcoses and keybindings -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-12 15:33:43 azabiralov>
+;;; Time-stamp: <2026-03-13 12:50:23 azabiralov>
 ;;;
 ;;; Commentary:
 
@@ -257,7 +257,7 @@
 (bind-key "H-s" #'save-buffer)
 (bind-key "H-x" #'eval-last-sexp)
 
-(bind-key "<f1>" #'kill-current-buffer)
+;; (bind-key "<f1>" #') ; ace-window
 (bind-key "<f2>" #'save-buffer)
 (bind-key "<f3>" #'replace-string)
 (bind-key "M-<f3>" #'my/replace-under-point)
