@@ -34,12 +34,15 @@
 		       current-window-only dedicated diminish
 		       docker-compose-mode dockerfile-mode doom-themes
 		       flycheck-mmark geiser-guile geiser-racket git-gutter
-		       go-mode grugru highlight-symbol jinja2-mode json-mode
-		       lsp-mode lsp-treemacs lsp-ui magit marginalia move-dup
-		       multiple-cursors nasm-mode nginx-mode orderless pinentry
-		       rainbow-delimiters reverse-im scratch sql-clickhouse
-		       super-save terraform-mode toml-mode transpose-frame
-		       treemacs vertico vterm-toggle yasnippet))
+		       git-modes go-mode grugru highlight-symbol jinja2-mode
+		       json-mode lsp-mode lsp-treemacs lsp-ui magit marginalia
+		       move-dup multiple-cursors nasm-mode nginx-mode orderless
+		       pinentry rainbow-delimiters reverse-im scratch
+		       sql-clickhouse super-save terraform-mode toml-mode
+		       transpose-frame treemacs vertico vim-modeline
+		       vterm-toggle yasnippet))
+ '(package-vc-selected-packages
+   '((vim-modeline :url "https://github.com/emacsmirror/vim-modeline")))
  '(warning-suppress-log-types '((comp) (comp)))
  '(warning-suppress-types '((comp))))
 

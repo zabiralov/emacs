@@ -1,6 +1,6 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-13 13:56:27 azabiralov>
+;;; Time-stamp: <2026-03-16 13:31:05 azabiralov>
 ;;;
 ;;; Commentary:
 ;;
@@ -397,6 +397,14 @@
   ("C-x g" . magit-status)
   :hook
   ((magit . (lambda () (tab-line-mode -1)))))
+
+(use-package vim-modeline
+  :vc (:url "https://github.com/emacsmirror/vim-modeline")
+  :ensure t
+  :custom
+  (vim-modeline/modelines 6)
+  :config
+  (add-to-list 'find-file-hook 'vim-modeline/do))
 
 
 ;;; 02modes.el ends here
