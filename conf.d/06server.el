@@ -1,7 +1,5 @@
 ;;; 06server.el --- settings for Emacs client and server -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-12 15:11:39 azabiralov>
-;;;
 ;;; Commentary:
 
 ;;; Code:

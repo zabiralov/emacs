@@ -1,7 +1,5 @@
 ;;; 01global.el --- global Emacs configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-13 14:50:18 azabiralov>
-;;;
 ;;; Commentary:
 ;;
 ;;; Code:
@@ -166,18 +164,19 @@
 
 (use-package savehist
   :ensure nil
-  :defer t
+  :demand t
   :custom
   (savehist-length 100)
   (savehist-additional-variables '(kill-ring search-ring regexp-search-ring last-kbd-macro))
   (savehist-file "/home/azabiralov/emacs/var/savehist.db")
   (savehist-autosave-interval 10)
+  (savehist-save-minibuffer-history t)
   :config
   (savehist-mode t))
 
 (use-package recentf
   :ensure nil
-  :defer t
+  :demand t
   :custom
   (recentf-max-saved-items 16)
   (recentf-max-menu-items 16)
@@ -226,11 +225,21 @@
                (display-buffer-same-window)
                (inhibit-same-window . nil)))
 
-(setq display-buffer-alist
-      (cons '("\\*vterm"
-	      (display-buffer-reuse-window display-buffer-at-bottom)
-	      (reusable-frames . visible)
-	      (window-height . 0.3))
-	    display-buffer-alist))
+(add-to-list 'display-buffer-alist
+             '("\\*vterm"
+	       (display-buffer-reuse-window display-buffer-at-bottom)
+	       (reusable-frames . visible)
+	       (window-height . 0.3)))
+
+(add-to-list 'display-buffer-alist
+             '("\\*Async-native-compile-log\\*"
+               (display-buffer-no-window)
+               (allow-no-window . t)))
+
+(add-to-list 'display-buffer-alist
+             '((lambda (buffer-name action)
+                 (assoc 'server (buffer-local-variables (get-buffer buffer-name))))
+               (display-buffer-reuse-window display-buffer-pop-up-window)
+               (inhibit-same-window . t)))
 
 ;;; 01main.el ends here

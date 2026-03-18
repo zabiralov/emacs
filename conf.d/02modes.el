@@ -1,7 +1,5 @@
 ;;; 02modes.el --- common Emacs modes configuration -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-16 13:31:05 azabiralov>
-;;;
 ;;; Commentary:
 ;;
 ;;; Code:
@@ -47,9 +45,7 @@
   (git-gutter:update-interval 1)
   (git-gutter:added-sign "+")
   (git-gutter:deleted-sign "-")
-  (git-gutter:modified-sign "*")
-  :config
-  (global-git-gutter-mode t))
+  (git-gutter:modified-sign "*"))
 
 (use-package grugru
   :ensure t
@@ -388,15 +384,14 @@
 
 (use-package magit
   :ensure t
+  :defer t
   :custom
   (magit-display-buffer-function 'magit-display-buffer-fullcolumn-most-v1)
   (magit-save-repository-buffers 'dontask)
   (magit-diff-refine-hunk 'all)
   (magit-commit-show-diff nil)
   :bind
-  ("C-x g" . magit-status)
-  :hook
-  ((magit . (lambda () (tab-line-mode -1)))))
+  ("<f5>" . magit-status))
 
 (use-package vim-modeline
   :vc (:url "https://github.com/emacsmirror/vim-modeline")
@@ -405,6 +400,28 @@
   (vim-modeline/modelines 6)
   :config
   (add-to-list 'find-file-hook 'vim-modeline/do))
+
+(use-package editorconfig
+  :ensure t
+  :defer t
+  :config
+  (editorconfig-mode t))
+
+(use-package restart-emacs
+  :ensure t
+  :defer t
+  :custom
+  (restart-emacs-daemon-with-tty-frames-p nil)
+  (restart-emacs-restore-frames nil))
+
+(use-package demap
+  :ensure t
+  :defer t
+  :custom
+  (demap-minimap-window-side 'right)
+  (demap-minimap-window-width 30)
+  :custom-face
+  (demap-minimap-font-face ((t (:font "Source Code Pro 14" :height 55)))))
 
 
 ;;; 02modes.el ends here

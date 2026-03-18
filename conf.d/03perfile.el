@@ -1,16 +1,8 @@
 ;;; 03perfile.el --- customizations for various modes -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-16 12:28:29 azabiralov>
-;;;
 ;;; Commentary:
 
 ;;; Code:
-
-(defcustom my/indent-width 4
-  "My universal indent setting."
-  :type 'integer
-  :group 'editing)
-
 
 (use-package make-mode
   :ensure t
@@ -38,7 +30,7 @@
   :defer t
   :custom
   (cperl-hairy nil)
-  (cperl-indent-level 'my/indent-width)
+  (cperl-indent-level 4)
   (cperl-auto-newline t)
   (cperl-electric-parens nil)
   (cperl-electric-lbrace-space nil))
@@ -47,8 +39,6 @@
   :ensure t
   :defer t
   :custom
-  (c-basic-offset 'my/indent-width)
-  (c-default-style "bsd")
   (c-report-syntactic-errors t))
 
 (use-package toml-mode
@@ -83,7 +73,7 @@
   :defer t
   :mode "\\.tf\\'"
   :custom
-  (terraform-indent-level 'my/indent-width))
+  (terraform-indent-level 2))
 
 (use-package conf-mode
   :ensure t
@@ -109,13 +99,13 @@
   :mode "\\.vars\\'"
   :mode "\\.nomad\\'"
   :custom
-  (hcl-indent-level 'my/indent-width))
+  (hcl-indent-level 2))
 
 (use-package nginx-mode
   :ensure t
   :defer t
   :custom
-  (nginx-indent-level 'my/indent-width)
+  (nginx-indent-level 4)
   (nginx-indent-tabs-mode nil)
   :mode "nginx\\.conf\\'")
 
@@ -133,7 +123,7 @@
   :ensure t
   :defer t
   :custom
-  (nasm-basic-offset 'my/indent-width))
+  (nasm-basic-offset 4))
 
 (use-package git-modes
   :ensure t

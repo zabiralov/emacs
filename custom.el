@@ -30,17 +30,17 @@
      "/home/azabiralov/org/todo/front-door.org"
      "/home/azabiralov/org/todo/katio.org"))
  '(package-selected-packages
-   '(aggressive-indent buffer-flip buffer-move bufferfile burly company
-		       current-window-only dedicated diminish
-		       docker-compose-mode dockerfile-mode doom-themes
-		       flycheck-mmark geiser-guile geiser-racket git-gutter
-		       git-modes go-mode grugru highlight-symbol jinja2-mode
-		       json-mode lsp-mode lsp-treemacs lsp-ui magit marginalia
-		       move-dup multiple-cursors nasm-mode nginx-mode orderless
-		       pinentry rainbow-delimiters reverse-im scratch
-		       sql-clickhouse super-save terraform-mode toml-mode
-		       transpose-frame treemacs vertico vim-modeline
-		       vterm-toggle yasnippet))
+   '(aggressive-indent buffer-flip buffer-move bufferfile burly company consult
+                       current-window-only dedicated demap diminish
+                       docker-compose-mode dockerfile-mode doom-themes
+                       editorconfig flycheck-mmark geiser-guile geiser-racket
+                       git-gutter git-modes go-mode grugru highlight-symbol
+                       jinja2-mode json-mode lsp-mode lsp-treemacs lsp-ui magit
+                       marginalia move-dup multiple-cursors nasm-mode nginx-mode
+                       orderless pinentry rainbow-delimiters restart-emacs
+                       reverse-im scratch sql-clickhouse super-save
+                       terraform-mode toml-mode transpose-frame treemacs vertico
+                       vim-modeline vterm-toggle yasnippet))
  '(package-vc-selected-packages
    '((vim-modeline :url "https://github.com/emacsmirror/vim-modeline")))
  '(warning-suppress-log-types '((comp) (comp)))

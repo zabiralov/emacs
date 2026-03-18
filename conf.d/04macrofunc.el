@@ -1,7 +1,5 @@
 ;;; 04macrofunc.el --- custom functions, marcoses and keybindings -*- lexical-binding: t -*-
 ;;;
-;;; Time-stamp: <2026-03-13 12:50:23 azabiralov>
-;;;
 ;;; Commentary:
 
 ;;; Code:
@@ -107,9 +105,13 @@
 (defun my/set-tool-bar ()
   "Setup my custom tool bar."
   (interactive)
-  (setq tool-bar-map my/tool-bar-map))
+  (setq-default tool-bar-map my/tool-bar-map))
 
-(add-hook 'after-change-major-mode-hook #'my/set-tool-bar)
+(add-hook 'buffer-list-update-hook
+          (lambda ()
+            (with-current-buffer (window-buffer)
+              (unless (eq tool-bar-map my/tool-bar-map)
+                (setq tool-bar-map my/tool-bar-map)))))
 
 (defun my/keyboard-quit ()
   "Quit minibuffer if active, otherwise `keyboard-quit`."
@@ -128,7 +130,8 @@
   (goto-address-mode t)
   (rainbow-delimiters-mode t)
   (prettify-symbols-mode -1)
-  (highlight-symbol-mode t))
+  (highlight-symbol-mode t)
+  (git-gutter-mode t))
 
 (defun my/buffer-enabled-prog-modes ()
   "List of buffer-local modes enabled by default for text modes."
@@ -137,9 +140,10 @@
   (goto-address-mode t)
   (rainbow-delimiters-mode t)
   (highlight-symbol-mode t)
-  (indent-tabs-mode t)
+  (indent-tabs-mode -1)
   (prettify-symbols-mode -1)
-  (aggressive-indent-mode t))
+  (aggressive-indent-mode t)
+  (git-gutter-mode t))
 
 (defun my/switch-language ()
   "Print input info and switch Ispell language."
@@ -257,20 +261,12 @@
 (bind-key "H-s" #'save-buffer)
 (bind-key "H-x" #'eval-last-sexp)
 
-;; (bind-key "<f1>" #') ; ace-window
 (bind-key "<f2>" #'save-buffer)
 (bind-key "<f3>" #'replace-string)
 (bind-key "M-<f3>" #'my/replace-under-point)
-;; (bind-key "<f4>" #')
 
-(bind-key "<f5>" #'indent-tabs-mode)
-(bind-key "<f6>" #'aggressive-indent-mode)
-
-;; (bind-key "<f7>" #')
+(bind-key "<f7>" #'kill-current-buffer)
 (bind-key "<f8>" #'my/delete-whole-line)
-;; (bind-key "<f9>" ')  ; vterm
-;; (bind-key "<f10>" ') ; scratch
-;; (bind-key "<f11>" ') ; Toggle fullscreen
 
 (bind-key "<f12>" #'kmacro-end-or-call-macro)
 (bind-key "M-<f12>" #'kmacro-start-macro-or-insert-counter)
