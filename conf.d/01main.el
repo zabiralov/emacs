@@ -117,8 +117,14 @@
 
 (use-package dired
   :ensure nil
+  :demand t
   :custom
-  (dired-kill-when-opening-new-buffer t))
+  (dired-kill-when-opening-new-dired-buffer t)
+  (dired-movement-style 'cycle)
+  (dired-auto-revert-buffer t)
+  (dired-create-destination-dirs 'ask)
+  :bind
+  ("<f6>" . dired))
 
 (use-package tool-bar
   :ensure nil

@@ -423,5 +423,13 @@
   :custom-face
   (demap-minimap-font-face ((t (:font "Source Code Pro 14" :height 55)))))
 
+(use-package ansible
+  :ensure t
+  :defer t)
+
+(use-package dired-rainbow
+  :ensure t
+  :defer t)
+
 
 ;;; 02modes.el ends here
